@@ -12,17 +12,17 @@ export const navItems = [
   {
     name: 'Testmonials',
     url: '/testmonials',
-   icon: 'icon-note',
+   icon: 'speech',
     children: [
       {
         name: 'Written Testmonials',
        url: '/testmonials/written',
-       icon: 'icon-note'
+       icon: 'speech'
      },
       {
        name: 'Video Testmonials',
         url: '/testmonials/video',
-         icon: 'icon-note'
+         icon: 'speech'
       },
     ]
    },
@@ -61,23 +61,23 @@ export const navItems = [
   {
     name: 'Reports',
     url: '/base',
-    icon: 'icon-file',
+    icon: 'icon-note',
     children: [
-      // {
-      //   name: 'Cards',
-      //   url: '/base/cards',
-      //   icon: 'icon-file'
-      // },
-      // {
-      //   name: 'Carousels',
-      //   url: '/base/carousels',
-      //   icon: 'icon-file'
-      // },
-      // {
-      //   name: 'Collapses',
-      //   url: '/base/collapses',
-      //   icon: 'icon-puzzle'
-      // },
+     {
+      name: 'Cards',
+         url: '/base/cards',
+      icon: 'icon-note'
+       },
+       {
+         name: 'Carousels',
+       url: '/base/carousels',
+       icon: 'icon-note'
+     },
+      {
+        name: 'Collapses',
+         url: '/base/collapses',
+      icon: 'icon-note'
+       }
       // {
       //   name: 'Forms',
       //   url: '/base/forms',
