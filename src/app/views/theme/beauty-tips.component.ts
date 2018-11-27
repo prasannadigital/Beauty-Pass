@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { BeautyTipsService } from '../../services/beauty-tips.service';
 
 // such override allows to keep some initial values
-
+declare var $: any;
 export function getAlertConfig(): AlertConfig {
   return Object.assign(new AlertConfig(), { type: 'success' });
 }
@@ -43,6 +43,7 @@ export class BeautyTipsComponent implements OnInit {
   userImageName = '';
   userimagePreview: any;
   userImage: string;
+  hideModal=false;
   deleteData: { tip_id: any; tip_title: any; tip_description: any; profile_name: any; rec_status: number; };
   constructor(private router: Router,private service: BeautyTipsService ,sanitizer: DomSanitizer) {
     this.alertsHtml = this.alertsHtml.map((alert: any) => ({
@@ -88,6 +89,9 @@ export class BeautyTipsComponent implements OnInit {
     this.editData = data;
     console.log(this.editData)
   }
+  loginPopUp() {
+    $('#largeModalCreate').modal('hide');    
+    }
   updatePromotion(val) {
     console.log(val)
     var data = {
@@ -104,12 +108,14 @@ export class BeautyTipsComponent implements OnInit {
     this.service.getBeautyTipsList().subscribe(response => {
       this.categorysData = response.json().data;
       console.log(this.categorysData);
+    this.loginPopUp();
+    
       this.addCreate();
     });
-    this.editData=[];
-    this.userimagePreview='';
-    this.userImageName='';
-    this.userImage='';
+    //this.editData=[];
+   // this.userimagePreview='';
+    //this.userImageName='';
+    //this.userImage='';
   }
   DeletePromotion(val) {
     console.log(val)

@@ -47,6 +47,7 @@
     "file-saver": "^2.0.0",
     "flag-icon-css": "^3.0.0",
     "font-awesome": "^4.7.0",
+    "jquery": "^3.3.1",
     "jspdf": "^1.4.1",
     "jspdf-autotable": "^2.3.5",
     "latest": "^0.2.0",

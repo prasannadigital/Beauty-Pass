@@ -104,7 +104,7 @@
                 <td>{{item.fullname}}</td>
                 <td>{{item.description}}</td>
                 <td>{{item.likes}}</td>
-                <td>{{item.video}}</td>
+                <td style="cursor:pointer;color: blue"><a (click)="openNewWindow(item,i)" >{{item.video}}</a></td>
                 <td> <button class="btn-primary" data-toggle="modal" (click)="largeModal.show();editPromotion(item,i)"><i class="fa fa-edit"></i></button></td>
                 <td> <button class="btn-danger"  data-toggle="modal"(click)="dangerModal.show();DeletePromotion(item,i)"><i class="fa fa-trash"></i></button></td>
               </tr>

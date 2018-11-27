@@ -24,6 +24,12 @@ editPromotion(data, index) {
   this.editData = data;
   console.log(this.editData)
 }
+openNewWindow(data, index){
+  data.index = index;
+  this.editData = data;
+  console.log(this.editData)
+  var newWindow = window.open(this.editData.video);
+}
 updatePromotion(val) {
   console.log(val)
   var data = {
