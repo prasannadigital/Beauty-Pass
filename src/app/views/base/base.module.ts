@@ -45,6 +45,9 @@ import { TooltipsComponent } from './tooltips.component';
 
 // Components Routing
 import { BaseRoutingModule } from './base-routing.module';
+import { AlertModule, ModalModule } from 'ngx-bootstrap';
+import { PaginatorModule } from 'primeng/paginator';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   imports: [
@@ -58,7 +61,15 @@ import { BaseRoutingModule } from './base-routing.module';
     PaginationModule.forRoot(),
     PopoverModule.forRoot(),
     ProgressbarModule.forRoot(),
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    CommonModule,
+    FormsModule,
+    BaseRoutingModule,
+    AlertModule,
+    PaginatorModule,
+    NgxPaginationModule,
+    AlertModule.forRoot(),
+    ModalModule.forRoot()
   ],
   declarations: [
     CardsComponent,
