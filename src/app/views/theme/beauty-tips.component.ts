@@ -1,4 +1,4 @@
-import { Component, SecurityContext, ViewEncapsulation,OnInit } from '@angular/core';
+import { Component, SecurityContext, ViewEncapsulation, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AlertConfig } from 'ngx-bootstrap/alert';
 import { Router } from '@angular/router';
@@ -43,34 +43,34 @@ export class BeautyTipsComponent implements OnInit {
   userImageName = '';
   userimagePreview: any;
   userImage: string;
-  hideModal=false;
+  hideModal = false;
   deleteData: { tip_id: any; tip_title: any; tip_description: any; profile_name: any; rec_status: number; };
-  constructor(private router: Router,private service: BeautyTipsService ,sanitizer: DomSanitizer) {
+  constructor(private router: Router, private service: BeautyTipsService, sanitizer: DomSanitizer) {
     this.alertsHtml = this.alertsHtml.map((alert: any) => ({
       type: alert.type,
       msg: sanitizer.sanitize(SecurityContext.HTML, alert.msg)
     }));
-   }
-   ngOnInit() {
+  }
+  ngOnInit() {
     setInterval(() => {
-     this.getList();
-      }, 2000);
-    
-  
+      this.getList();
+    }, 2000);
+
+
   }
   model: any = {};
 
   onSubmit() {
-   console.log(this.editData.tip_title);
-   this.updatePromotion(this.editData);
+    console.log(this.editData.tip_title);
+    this.updatePromotion(this.editData);
   }
-  getList(){
+  getList() {
     this.service.getBeautyTipsList().subscribe(response => {
       this.categorysData = response.json().data;
       console.log(this.categorysData)
     });
   }
-   alertsHtml: any = [
+  alertsHtml: any = [
     {
       type: 'success',
       msg: `<strong>Well done!</strong> You successfully read this important alert message.`
@@ -84,38 +84,37 @@ export class BeautyTipsComponent implements OnInit {
       msg: `<strong>Warning!</strong> Better check yourself, you're not looking too good.`
     }
   ];
+  clearData() {
+    this.editData = [];
+    this.userimagePreview = '';
+    this.userImageName = '';
+    this.userImage = '';
+  }
   editPromotion(data, index) {
     data.index = index;
     this.editData = data;
     console.log(this.editData)
   }
-  loginPopUp() {
-    $('#largeModalCreate').modal('hide');    
-    }
   updatePromotion(val) {
+    let element = document.getElementById("CloseButton");
     console.log(val)
     var data = {
       tip_id: val.tip_id,
       tip_title: val.tip_title,
       tip_description: val.tip_description,
-      tip_img:this.userImage,
-      tip_category:1,
-      profile_name:this.userImageName,
-      rec_status:val.rec_status
+      tip_img: this.userImage,
+      tip_category: 1,
+      profile_name: this.userImageName,
+      rec_status: val.rec_status
     }
     this.service.editBeautyTip(data).subscribe();
-    this.categorysData=[];
+    element.click();
+    this.categorysData = [];
     this.service.getBeautyTipsList().subscribe(response => {
       this.categorysData = response.json().data;
       console.log(this.categorysData);
-    this.loginPopUp();
-    
       this.addCreate();
     });
-    //this.editData=[];
-   // this.userimagePreview='';
-    //this.userImageName='';
-    //this.userImage='';
   }
   DeletePromotion(val) {
     console.log(val)
@@ -124,20 +123,20 @@ export class BeautyTipsComponent implements OnInit {
       tip_title: val.tip_title,
       tip_description: val.tip_description,
       profile_name: val.profile_name,
-      rec_status:0
+      rec_status: 0
     }
-  this.deleteData=data;
+    this.deleteData = data;
   }
-deleteAlert(){
-  this.service.editBeautyTip(this.deleteData).subscribe();
+  deleteAlert() {
+    this.service.editBeautyTip(this.deleteData).subscribe();
     this.delete();
-    this.categorysData=[];
+    this.categorysData = [];
     this.service.getBeautyTipsList().subscribe(response => {
       this.categorysData = response.json().data;
       console.log(this.categorysData)
     });
 
-}
+  }
   alertsDismiss: any = [];
   add(): void {
     this.alertsDismiss.push({
@@ -176,7 +175,7 @@ deleteAlert(){
       reader.onload = this._handleReaderLoaded.bind(this);
       reader.readAsBinaryString(file);
     }
-    
+
     if (event.target.files && event.target.files[0] && this.currentImage === 'p') {
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
@@ -186,19 +185,19 @@ deleteAlert(){
         this.userimagePreview = event.target;
       }
     }
-   
+
 
   }
   //image base64 format
   _handleReaderLoaded(readerEvt) {
-   
+
 
     if (this.currentImage === 'p') {
       var binaryString = readerEvt.target.result;
       this.userImage = btoa(binaryString);
-      console.log("final"+this.userImage)
+      console.log("final" + this.userImage)
     }
-    
+
     this.currentImage = ''
   }
 }
