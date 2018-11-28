@@ -1,4 +1,4 @@
-<div class="card-body">
+<!-- <div class="card-body">
   <div class="row">
       <div class="col-sm-8"></div>
     <div class="col-sm-4 printOptions">
@@ -6,19 +6,21 @@
      <span>  <i (click)="pdfDownload()" class="fa fa-file-pdf-o" style="font-size:24px;color:red;cursor: pointer;"></i></span> 
     </div>
   </div>
-</div>
+</div> -->
 <div class="animated fadeIn">
   <div class="row">
     <div class="col-lg-12">
       <div class="card">
         <div class="card-header">
-          <i class="fa fa-align-justify"></i> Voucher Reports
+          <i class="fa fa-align-justify"></i>Voucher Reports 
+          <span> <i (click)="exportAsXLSX()" class="fa fa-file-excel-o"style="font-size:24px;color:blue;margin-right: 20px;cursor: pointer; float:right"></i></span> 
+          <span> <i (click)="pdfDownload()" class="fa fa-file-pdf-o" style="font-size:24px;color:red; margin-right: 15px;cursor: pointer; float:right"></i></span> 
         </div>
         <div class="card-body">
           <table class="table table-bordered table-striped table-sm">
             <thead>
               <tr>
-                <th>coupons_for</th>
+                <th>Coupons For</th>
                 <th>Used</th>
                 <th>Unused</th>
                 <th>Expired</th>
