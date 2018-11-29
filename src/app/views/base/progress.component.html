@@ -1,59 +1,47 @@
 <div class="animated fadeIn">
-  <div class="card">
-    <div class="card-header">
-      Bootstrap Progress
-      <div class="card-header-actions">
-        <a href="https://valor-software.com/ngx-bootstrap/#/progressbar" target="_blank">
-          <small className="text-muted">docs</small>
-        </a>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-header">
+            <i class="fa fa-align-justify"></i> Perks
+            <span> <i (click)="exportAsXLSX()" class="fa fa-file-excel-o"style="font-size:24px;color:blue;margin-right: 20px;cursor: pointer; float:right"></i></span> 
+            <span> <i (click)="pdfDownload()" class="fa fa-file-pdf-o" style="font-size:24px;color:red; margin-right: 15px;cursor: pointer; float:right"></i></span> 
+          </div>
+          <div class="card-body">
+            <table class="table table-bordered table-striped table-sm">
+              <thead>
+                <tr>
+                  <th>Reward Point Name</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of categorysData | paginate: { itemsPerPage: 10, currentPage: p }">
+                  <td>{{item.rewardpoint_name}}</td>
+                  <td>{{item.rewardpoint_amount}}</td>
+                  <td>{{item.rewardpoint_status}}</td>
+                  <td>{{item.rewardpoint_start_date | date: 'dd/MM/yyyy'}}</td>
+                  <td>{{item.rewardpoint_end_date | date: 'dd/MM/yyyy'}}</td>
+               
+                </tr>
+                <tr *ngIf="!categorysData || categorysData.length ==0">
+                  No Records Found
+                </tr>
+              </tbody>
+            </table>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            <!-- <div class="col-xs-12 col-12">
+              <pagination [totalItems]="bigTotalItems" [(ngModel)]="bigCurrentPage" [maxSize]="maxSize" class="pagination-sm"
+                          previousText="&lsaquo;" nextText="&rsaquo;" [boundaryLinks]="true"></pagination>
+            </div> -->
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="card-body">
-      <div class="row">
-        <div class="col-sm-4">
-          <progressbar class="progress" [value]="55" [max]="100"></progressbar>
-        </div>
-        <div class="col-sm-4">
-          <progressbar class="progress progress-striped" [value]="22" [max]="100" type="warning">22%</progressbar>
-        </div>
-        <div class="col-sm-4">
-          <progressbar class="progress progress-striped active" [max]="200" [value]="166" type="danger"><i>166 / 200</i></progressbar>
-        </div>
-      </div>
+      <!--/.col-->
     </div>
   </div>
-  <div class="card">
-    <div class="card-header">
-      Progress <small>dynamic</small>
-    </div>
-    <div class="card-body">
-      <progressbar class="progress progress-striped progress-animated" [max]="max" [value]="dynamic">
-        <span style="color:white; white-space:nowrap;">{{dynamic}} / {{max}}</span>
-      </progressbar>
-
-      <small><em>No animation</em></small>
-      <progressbar class="progress progress-success" [value]="dynamic" [max]="100" type="success"><b>{{dynamic}}%</b></progressbar>
-
-      <small><em>Object (changes type based on value)</em></small>
-      <progressbar class="progress-bar progress-bar-striped progress-bar-animated" [value]="dynamic" [max]="max" [type]="type">
-        {{type}} <i *ngIf="showWarning">!!! Watch out !!!</i>
-      </progressbar>
-      <br>
-      <button type="button" class="btn btn-sm btn-primary" (click)="random()">Randomize</button>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header">
-      Progress <small>stacked</small>
-    </div>
-    <div class="card-body">
-      <div class="row col-lg-12">
-        <progressbar class="progress" [value]="stacked" [max]="100"></progressbar>
-      </div>
-      <br>
-      <div class="row col-md-12">
-        <button type="button" class="btn btn-sm btn-primary" (click)="randomize()">{{buttonCaption}} randomize</button>
-      </div>
-    </div>
-  </div>
-</div>
+  

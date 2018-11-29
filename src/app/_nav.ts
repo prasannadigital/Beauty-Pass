@@ -83,11 +83,11 @@ export const navItems = [
         url: '/base/forms',
         icon: 'icon-puzzle'
        },
-      {
-       name: 'Beauty Tips Reports',
-       url: '/base/paginations',
-       icon: 'icon-puzzle'
-       },
+     // {
+      // name: 'Beauty Tips Reports',
+       //url: '/base/paginations',
+     //  icon: 'icon-puzzle'
+     //  },
       {
          name: 'User Coupons List',
         url: '/base/popovers',

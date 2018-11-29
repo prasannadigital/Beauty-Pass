@@ -6,6 +6,7 @@ import { RefferalRewardsService } from '../../services/refferal-rewards.service'
 
 // such override allows to keep some initial values
 
+
 export function getAlertConfig(): AlertConfig {
   return Object.assign(new AlertConfig(), { type: 'success' });
 }
