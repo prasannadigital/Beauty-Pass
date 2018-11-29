@@ -14,4 +14,5 @@ export class BeautyTipsService {
   public editBeautyTip(data:any) {
     return this.http.post(environment.host + 'add-beauty-tips', data);
   }
+  
 }
