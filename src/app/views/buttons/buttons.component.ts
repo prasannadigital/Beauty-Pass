@@ -10,6 +10,7 @@ export function getAlertConfig(): AlertConfig {
   return Object.assign(new AlertConfig(), { type: 'success' });
 }
 
+
 @Component({
   templateUrl: 'buttons.component.html',
   encapsulation: ViewEncapsulation.None,

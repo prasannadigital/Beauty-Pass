@@ -74,35 +74,35 @@ export const navItems = [
        icon: 'icon-note'
      },
       {
-        name: 'Collapses',
+        name: 'Written Testmonials',
          url: '/base/collapses',
       icon: 'icon-note'
-       }
-      // {
-      //   name: 'Forms',
-      //   url: '/base/forms',
-      //   icon: 'icon-puzzle'
-      // },
-      // {
-      //   name: 'Pagination',
-      //   url: '/base/paginations',
-      //   icon: 'icon-puzzle'
-      // },
-      // {
-      //   name: 'Popovers',
-      //   url: '/base/popovers',
-      //   icon: 'icon-puzzle'
-      // },
-      // {
-      //   name: 'Progress',
-      //   url: '/base/progress',
-      //   icon: 'icon-puzzle'
-      // },
-      // {
-      //   name: 'Switches',
-      //   url: '/base/switches',
-      //   icon: 'icon-puzzle'
-      // },
+       },
+       {
+        name: 'Video Testmonials',
+        url: '/base/forms',
+        icon: 'icon-puzzle'
+       },
+      {
+       name: 'Beauty Tips Reports',
+       url: '/base/paginations',
+       icon: 'icon-puzzle'
+       },
+      {
+         name: 'User Coupons List',
+        url: '/base/popovers',
+        icon: 'icon-puzzle'
+       },
+      {
+        name: 'Pearks and Rewards',
+        url: '/base/progress',
+         icon: 'icon-puzzle'
+      },
+      {
+         name: 'Employee Log History',
+        url: '/base/switches',
+        icon: 'icon-puzzle'
+       },
       // {
       //   name: 'Tables',
       //   url: '/base/tables',
