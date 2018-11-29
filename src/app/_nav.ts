@@ -12,17 +12,17 @@ export const navItems = [
   {
     name: 'Testmonials',
     url: '/testmonials',
-   icon: 'speech',
+   icon: 'icon-note',
     children: [
       {
         name: 'Written Testmonials',
        url: '/testmonials/written',
-       icon: 'speech'
+       icon: 'icon-note'
      },
       {
        name: 'Video Testmonials',
         url: '/testmonials/video',
-         icon: 'speech'
+         icon: 'icon-note'
       },
     ]
    },
@@ -64,12 +64,12 @@ export const navItems = [
     icon: 'icon-note',
     children: [
      {
-      name: 'Cards',
+      name: 'Voucher Reports',
          url: '/base/cards',
       icon: 'icon-note'
        },
        {
-         name: 'Carousels',
+         name: 'User Activity Reports',
        url: '/base/carousels',
        icon: 'icon-note'
      },

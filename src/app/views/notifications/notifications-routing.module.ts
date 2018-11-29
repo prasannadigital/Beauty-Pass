@@ -27,10 +27,10 @@ const routes: Routes = [
         }
       },
       {
-        path: 'modals',
+        path: 'written-edit',
         component: ModalsComponent,
         data: {
-          title: 'Modals'
+          title: 'Less Ratings'
         }
       }
     ]
