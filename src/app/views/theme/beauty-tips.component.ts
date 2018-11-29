@@ -45,6 +45,8 @@ export class BeautyTipsComponent implements OnInit {
   userImage: string;
   hideModal = false;
   deleteData: { tip_id: any; tip_title: any; tip_description: any; profile_name: any; rec_status: number; };
+  alertMessageValue: boolean;
+  validBtn: boolean;
   constructor(private router: Router, private service: BeautyTipsService, sanitizer: DomSanitizer) {
     this.alertsHtml = this.alertsHtml.map((alert: any) => ({
       type: alert.type,
@@ -107,13 +109,17 @@ export class BeautyTipsComponent implements OnInit {
       profile_name: this.userImageName,
       rec_status: val.rec_status
     }
+     if(!data.tip_id){
+       this.addCreate();
+     }
     this.service.editBeautyTip(data).subscribe();
+
     element.click();
     this.categorysData = [];
     this.service.getBeautyTipsList().subscribe(response => {
       this.categorysData = response.json().data;
       console.log(this.categorysData);
-      this.addCreate();
+      //this.addCreate();
     });
   }
   DeletePromotion(val) {
@@ -199,5 +205,15 @@ export class BeautyTipsComponent implements OnInit {
     }
 
     this.currentImage = ''
+  }
+  requiredValue(){
+    if(this.editData.tip_title==""){
+      this.alertMessageValue=true;
+      this.validBtn=true
+    }
+    else{
+      this.alertMessageValue=false;
+      this.validBtn=false;
+    }
   }
 }
