@@ -11,4 +11,7 @@ export class LoginService {
   public loginSubmit(data:any) {
     return this.http.post(environment.host + 'web-login', data);
   }
+  public rgisterSubmit(data:any) {
+    return this.http.post(environment.host + 'add_employee', data);
+  }
 }
