@@ -78,6 +78,12 @@ export class UsersComponent implements OnInit {
       msg: `<strong>Warning!</strong> Better check yourself, you're not looking too good.`
     }
   ];
+  clearData(){
+    this.editData.emp_email='';
+    this.editData.emp_name='';
+    this.editData.emp_mobile='';
+    this.editData.emp_password='';
+  }
   editPromotion(data, index) {
     data.index = index;
     this.editData = data;
@@ -99,6 +105,7 @@ export class UsersComponent implements OnInit {
     }
      if(!data.employee_id){
        this.addCreate();
+       this.clearData();
      }
     this.service.rgisterSubmit(data).subscribe();
 
