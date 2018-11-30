@@ -7,6 +7,7 @@ import { LoginService } from '../../services/login.service';
   templateUrl: 'login.component.html'
 })
 export class LoginComponent {
+  errorMeassage=false;
   editData={
   'emailid': '',
   'password':''
@@ -18,11 +19,20 @@ export class LoginComponent {
   }
   onSubmit() {
     console.log(this.editData);
-    this.service.loginSubmit(this.editData).subscribe(response => {
-      this.categorysData = response.json().data;
-      console.log(this.categorysData);
-      this.router.navigate(['dashboard'])
-    });
+    if(this.editData.emailid!='' && this.editData.password!=''){
+      this.service.loginSubmit(this.editData).subscribe(response => {
+        this.categorysData = response.json();
+        console.log(this.categorysData.data[0]);
+        if(this.categorysData.status==true){
+          sessionStorage.setItem('loginDetails', JSON.stringify(this.categorysData.data));
+          this.router.navigate(['dashboard']);
+        }
+       else{
+         this.errorMeassage=true;
+       }
+      });
+    }
+   
    // this.updatePromotion(this.editData);
   }
 }

@@ -15,6 +15,8 @@ export class AppComponent implements OnInit {
         return;
       }
       window.scrollTo(0, 0);
+      //this.router.navigate([''])
     });
+    this.router.navigate([''])
   }
 }

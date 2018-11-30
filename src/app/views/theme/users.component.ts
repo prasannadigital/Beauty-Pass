@@ -1,8 +1,9 @@
-import { Component, SecurityContext, ViewEncapsulation, OnInit } from '@angular/core';
+import { Component, SecurityContext, ViewEncapsulation, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AlertConfig } from 'ngx-bootstrap/alert';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
+import { NgForm } from '@angular/forms';
 declare var $: any;
 export function getAlertConfig(): AlertConfig {
   return Object.assign(new AlertConfig(), { type: 'success' });
@@ -23,6 +24,7 @@ export function getAlertConfig(): AlertConfig {
   providers: [{ provide: AlertConfig, useFactory: getAlertConfig }]
 })
 export class UsersComponent implements OnInit {
+  //@ViewChild('myForm') mytemplateForm : ngForm;
   alerts: any[] = [{
     type: 'success',
     msg: `Testmonial Details Updated Successfully`,
@@ -46,7 +48,8 @@ export class UsersComponent implements OnInit {
   alertMessageValue: boolean;
   validBtn: boolean;
   editData={
-    'emp_name': '',
+    'emp_firstname': '',
+    'emp_lastname':'',
     'emp_password':'',
     'emp_email':'',
     "emp_address": "hyd",
@@ -57,7 +60,7 @@ export class UsersComponent implements OnInit {
     }
     categorysData: any;
     createdValue=false;
-  deleteData: { employee_id: any; emp_name: any; emp_address: any; emp_mobile: any; emp_email: any; emp_password: any; emp_branch: any; emp_role: any; emp_status: number; };
+  deleteData: { employee_id: any; emp_firstname: any; emp_address: any; emp_mobile: any; emp_email: any; emp_password: any; emp_branch: any; emp_role: any; emp_status: number; };
   constructor(private service:LoginService,private router: Router, sanitizer: DomSanitizer) {
     this.alertsHtml = this.alertsHtml.map((alert: any) => ({
       type: alert.type,
@@ -80,48 +83,59 @@ export class UsersComponent implements OnInit {
   ];
   clearData(){
     this.editData.emp_email='';
-    this.editData.emp_name='';
+    this.editData.emp_firstname='';
+    this.editData.emp_lastname='';
     this.editData.emp_mobile='';
     this.editData.emp_password='';
+    this.editData.emp_address='';
+    this.editData.emp_branch='';
   }
   editPromotion(data, index) {
     data.index = index;
     this.editData = data;
     console.log(this.editData)
   }
+  clearForm(){
+    (<HTMLFormElement>document.getElementById("Login")).reset();
+   }
   updatePromotion(val) {
-    let element = document.getElementById("CloseButton");
-    console.log(val)
-    var data = {
-      employee_id: val.employee_id,
-      emp_name: val.emp_name,
-      emp_address: val.emp_address,
-      emp_mobile: val.emp_mobile,
-      emp_email: val.emp_email,
-      emp_password: val.emp_password,
-      emp_branch: val.emp_branch,
-      emp_role:val.emp_role,
-      emp_status: val.emp_status
+    if(this.editData.emp_firstname!='' && this.editData.emp_lastname!='' && this.editData.emp_mobile!='' && this.editData.emp_address!='' && this.editData.emp_password!='' && this.editData.emp_branch!=''){
+      let element = document.getElementById("CloseButton");
+      console.log(val)
+      var data = {
+        employee_id: val.employee_id,
+        emp_firstname: val.emp_firstname,
+        emp_lastname: val.emp_lastname,
+        emp_address: val.emp_address,
+        emp_mobile: val.emp_mobile,
+        emp_email: val.emp_email,
+        emp_password: val.emp_password,
+        emp_branch: val.emp_branch,
+        emp_role:val.emp_role,
+        emp_status: val.emp_status
+      }
+       if(!data.employee_id){
+         this.addCreate();
+         this.clearData();
+       }
+      this.service.rgisterSubmit(data).subscribe();
+  
+      element.click();
+      this.categorysData = [];
+      this.service.getEmpList().subscribe(response => {
+        this.categorysData = response.json().data;
+        console.log(this.categorysData);
+        //this.addCreate();
+        this.clearForm();
+      });
     }
-     if(!data.employee_id){
-       this.addCreate();
-       this.clearData();
-     }
-    this.service.rgisterSubmit(data).subscribe();
-
-    element.click();
-    this.categorysData = [];
-    this.service.getEmpList().subscribe(response => {
-      this.categorysData = response.json().data;
-      console.log(this.categorysData);
-      //this.addCreate();
-    });
+    
   }
   DeletePromotion(val) {
     console.log(val)
     var data = {
       employee_id: val.employee_id,
-      emp_name: val.emp_name,
+      emp_firstname: val.emp_firstname,
       emp_address: val.emp_address,
       emp_mobile: val.emp_mobile,
       emp_email: val.emp_email,

@@ -20,4 +20,7 @@ export class DefaultLayoutComponent {
       attributes: true
     });
   }
+  clearSession(){
+    sessionStorage.removeItem('loginDetails');  
+  }
 }
