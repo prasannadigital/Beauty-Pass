@@ -9,6 +9,11 @@ export const navItems = [
     url: '/users-list',
    icon: 'icon-people'
  },
+ {
+  name: 'Employee',
+  url: '/theme/users',
+  icon: 'icon-people'
+},
   {
     name: 'Testmonials',
     url: '/testmonials',

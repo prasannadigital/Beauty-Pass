@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { BeautyTipsComponent } from './beauty-tips.component';
 import { TestimonialsComponent } from './testimonials.component';
+import { UsersComponent } from './users.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,15 @@ const routes: Routes = [
         data: {
           title: 'Testimonials'
         }
+        
+      },
+      {
+        path: 'users',
+        component: UsersComponent,
+        data: {
+          title: 'Employees'
+        }
+        
       }
     ]
   }

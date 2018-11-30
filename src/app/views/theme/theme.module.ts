@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { BeautyTipsComponent } from './beauty-tips.component';
 import { TestimonialsComponent } from './testimonials.component';
-
+import { UsersComponent } from './users.component';
 // Theme Routing
 import { ThemeRoutingModule } from './theme-routing.module';
 
@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AlertModule } from 'ngx-bootstrap';
+
 // Dropdowns Component
 
 
@@ -26,7 +27,8 @@ import { AlertModule } from 'ngx-bootstrap';
   ],
   declarations: [
     BeautyTipsComponent,
-    TestimonialsComponent
+    TestimonialsComponent,
+    UsersComponent
   ]
 })
 export class ThemeModule { }
