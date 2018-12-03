@@ -35,6 +35,7 @@ export class WidgetsComponent implements OnInit {
   editData: any = [];
   bigCurrentPage: number = 1;
   deleteData: { coupons_id: any; coupons_for: any; coupons_number: any; coupons_status: number; };
+  userData: any;
   constructor(private router: Router,private service: RefferalRewardsService ,sanitizer: DomSanitizer) {
     this.alertsHtml = this.alertsHtml.map((alert: any) => ({
       type: alert.type,
@@ -44,7 +45,9 @@ export class WidgetsComponent implements OnInit {
    ngOnInit() {
     this.service.getMindBodyCoupons().subscribe(response => {
       this.categorysData = response.json().data;
-      console.log(this.categorysData)
+      console.log(this.categorysData);
+      this.userData=JSON.parse(sessionStorage.getItem('loginDetails'));
+      console.log(this.userData[0].employee_id);
     });
   
   }
@@ -73,7 +76,8 @@ export class WidgetsComponent implements OnInit {
       coupons_id: val.coupons_id,
       coupons_for: val.coupons_for,
       coupons_number: val.coupons_number,
-      coupons_status: val.coupons_status
+      coupons_status: val.coupons_status,
+      createdempid:this.userData[0].employee_id
     }
     this.service.editMindBodyCoupons(data).subscribe();
   }
@@ -83,6 +87,7 @@ export class WidgetsComponent implements OnInit {
       coupons_id: val.coupons_id,
       coupons_for: val.coupons_for,
       coupons_number: val.coupons_number,
+      createdempid:this.userData[0].employee_id,
       coupons_status: 0
     }
    

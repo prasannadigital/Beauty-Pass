@@ -81,6 +81,8 @@ aria-hidden="true">
                 <th>Cost</th>
                 <th>Status</th>
                 <th>Type</th>
+                <th>Start Date</th>
+                <th>End Date</th>
                 <th>Edit</th>
                 <th>Delete</th>
               </tr>
@@ -91,6 +93,8 @@ aria-hidden="true">
                 <td>{{item.coupons_for}}</td>
                 <td>{{item.coupons_status}}</td>
                 <td>{{item.coupons_type}}</td>
+                <td>{{item.coupons_startdate}}</td>
+                <td>{{item.coupons_enddate}}</td>
                 <td> <button class="btn-primary" data-toggle="modal" (click)="largeModal.show();editPromotion(item,i)"><i class="fa fa-edit"></i></button></td>
                 <td> <button class="btn-danger"  data-toggle="modal"(click)="dangerModal.show();DeletePromotion(item,i)"><i class="fa fa-trash"></i></button></td>
               </tr>

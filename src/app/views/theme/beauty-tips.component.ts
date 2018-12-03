@@ -47,6 +47,7 @@ export class BeautyTipsComponent implements OnInit {
   deleteData: { tip_id: any; tip_title: any; tip_description: any; profile_name: any; rec_status: number; };
   alertMessageValue: boolean;
   validBtn: boolean;
+  userData: any;
   constructor(private router: Router, private service: BeautyTipsService, sanitizer: DomSanitizer) {
     this.alertsHtml = this.alertsHtml.map((alert: any) => ({
       type: alert.type,
@@ -57,7 +58,8 @@ export class BeautyTipsComponent implements OnInit {
     setInterval(() => {
       this.getList();
     }, 2000);
-
+    this.userData=JSON.parse(sessionStorage.getItem('loginDetails'));
+    console.log(this.userData[0].employee_id);
 
   }
   model: any = {};

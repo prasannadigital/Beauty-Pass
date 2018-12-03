@@ -36,6 +36,7 @@ export class ButtonsComponent implements OnInit {
   editData: any = [];
   bigCurrentPage: number = 1;
   deleteData: { activity_id: any; activity_name: any; activity_points: any; activity_desc: any; activity_status: number; };
+  userData: any;
   constructor(private router: Router,private service: RefferalRewardsService ,sanitizer: DomSanitizer) {
     this.alertsHtml = this.alertsHtml.map((alert: any) => ({
       type: alert.type,
@@ -45,7 +46,9 @@ export class ButtonsComponent implements OnInit {
    ngOnInit() {
     this.service.getUserActivitiesList().subscribe(response => {
       this.categorysData = response.json().data;
-      console.log(this.categorysData)
+      console.log(this.categorysData);
+      this.userData=JSON.parse(sessionStorage.getItem('loginDetails'));
+      console.log(this.userData[0].employee_id);
     });
   
   }

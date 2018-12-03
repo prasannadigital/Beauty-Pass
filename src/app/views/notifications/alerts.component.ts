@@ -36,6 +36,7 @@ export class AlertsComponent implements OnInit {
   bigCurrentPage: number = 1;
   deleteConfirm: boolean;
   deleteData: { testimonial_id: any; user_id: any; rating_1: any; rating_2: any; rating_3: any; rating_4: any; rating_5: any; comments: any; status: number; recomment: any; uploadpic: any; };
+  userData: any;
   constructor(private router: Router,private service: TestmonialsService ,sanitizer: DomSanitizer) {
     this.alertsHtml = this.alertsHtml.map((alert: any) => ({
       type: alert.type,
@@ -62,7 +63,9 @@ export class AlertsComponent implements OnInit {
   ngOnInit() {
   this.service.getWrittenTestmonials().subscribe(response => {
     this.categorysData = response.json().data;
-    console.log(this.categorysData)
+    console.log(this.categorysData);
+    this.userData=JSON.parse(sessionStorage.getItem('loginDetails'));
+    console.log(this.userData[0].employee_id);
   });
 
 }
@@ -84,7 +87,8 @@ updatePromotion(val) {
     recomment:val.recomment,
     status: val.status,
     uploadpic: val.uploadpic,
-    user_id: val.user_id
+    user_id: val.user_id,
+    updatedempid:this.userData[0].employee_id
   }
   this.service.editWrittenTestmonials(data).subscribe();
   this.alerts.push({
