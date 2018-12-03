@@ -106,7 +106,7 @@ export const navItems = [
        {
          name: 'Employee Log History',
        url: '/base/switches',
-        icon: 'icon-puzzle'
+        icon: 'icon-note'
       },
       // {
       //   name: 'Tables',
