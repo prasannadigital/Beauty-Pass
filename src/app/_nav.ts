@@ -103,11 +103,11 @@ export const navItems = [
         url: '/base/progress',
          icon: 'icon-note'
       },
-      // {
-      //    name: 'Employee Log History',
-      //   url: '/base/switches',
-      //   icon: 'icon-puzzle'
-      //  },
+       {
+         name: 'Employee Log History',
+       url: '/base/switches',
+        icon: 'icon-puzzle'
+      },
       // {
       //   name: 'Tables',
       //   url: '/base/tables',
