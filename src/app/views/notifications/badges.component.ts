@@ -33,7 +33,12 @@ openNewWindow(data, index){
   console.log(this.editData)
   var newWindow = window.open(this.editData.video);
 }
+onSubmit() {
+  //console.log(this.editData.tip_title);
+  this.updatePromotion(this.editData);
+}
 updatePromotion(val) {
+  let element = document.getElementById("CloseButton");
   console.log(val)
   var data = {
     description: val.description,
@@ -46,6 +51,8 @@ updatePromotion(val) {
   }
   console.log(data);
   this.service.editVideoTestmonials(data).subscribe();
+  this.add();
+  element.click();
 }
 DeletePromotion(val) {
   console.log(val)

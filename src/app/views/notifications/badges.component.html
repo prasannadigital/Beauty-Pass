@@ -35,7 +35,7 @@
                 <strong>Edit Testmonails</strong> 
               </div>
               <div class="card-body">
-                <form  class="form-horizontal">
+                <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
                   <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="text-input">User Name</label>
                     <div class="col-md-9">
@@ -46,24 +46,33 @@
                   <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="text-input">Description</label>
                     <div class="col-md-9">
-                      <input type="text" maxlength="50"  name="description" class="form-control" placeholder="Text" [(ngModel)]="editData.description">
+                      <textarea type="text" maxlength="500" rows="5"  name="description" class="form-control" placeholder="Text" [(ngModel)]="editData.description"></textarea>
                       <!-- <span class="help-block">This is a help text</span> -->
                     </div>
                   </div>
                   <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="text-input">Likes	</label>
                     <div class="col-md-9">
-                      <input type="number" maxlength="50"  name="likes" class="form-control" placeholder="Text" [(ngModel)]="editData.likes">
-                      <!-- <span class="help-block">This is a help text</span> -->
+                      <input type="number" maxlength="50"  name="likes" class="form-control" placeholder="Text" [(ngModel)]="editData.likes"
+                      #likes="ngModel" [ngClass]="{ 'is-invalid': f.submitted && likes.invalid }"
+                      required>
+                      <div *ngIf="f.submitted && likes.invalid" class="invalid-feedback">
+                        <div *ngIf="likes.errors.required">Likes is required</div>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="text-input">Video Link</label>
                     <div class="col-md-9">
-                      <input type="text" maxlength="50"  name="video" class="form-control" placeholder="Text" [(ngModel)]="editData.video">
-                      <!-- <span class="help-block">This is a help text</span> -->
+                      <input type="text" maxlength="50"  name="video" class="form-control" placeholder="Text" [(ngModel)]="editData.video"
+                      #video="ngModel" [ngClass]="{ 'is-invalid': f.submitted && video.invalid }"
+                       disabled>
+                      <div *ngIf="f.submitted && video.invalid" class="invalid-feedback">
+                        <div *ngIf="video.errors.required">Video Link is required</div>
+                      </div>
                     </div>
                   </div>
+                  <button  class="btn btn-primary">Save changes</button>
                 </form>
               </div>
             </div>
@@ -71,8 +80,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="largeModal.hide()">Close</button>
-        <button type="button" class="btn btn-primary" (click)="updatePromotion(editData);largeModal.hide();add();" >Save changes</button>
+        <button type="button" id="CloseButton" class="btn btn-secondary" (click)="largeModal.hide()">Close</button>
+       
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
