@@ -76,6 +76,7 @@ export class BrandButtonsComponent implements OnInit {
   }
   updatePromotion(val) {
     let element = document.getElementById("CloseButton");
+    let element1 = document.getElementById("CloseButtonCreate");
     if(val.rewardpoint_id){
      
       this.add();
@@ -96,6 +97,7 @@ export class BrandButtonsComponent implements OnInit {
       this.categorysData = response.json().data;
       console.log(this.categorysData);
       element.click();
+      element1.click();
     });
   }
   DeletePromotion(val) {

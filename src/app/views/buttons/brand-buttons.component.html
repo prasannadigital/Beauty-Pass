@@ -97,28 +97,30 @@ aria-hidden="true">
                 <strong>Edit Perks</strong> 
               </div>
               <div class="card-body">
-                <form  class="form-horizontal">
+                <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="text-input">Reward Name</label>
+                    <label class="col-md-3 col-form-label" for="text-input">Reward Name<b style="color:red">*</b></label>
                     <div class="col-md-9">
-                      <input type="text" maxlength="50"  name="rewardpoint_name" class="form-control" placeholder="Text" [(ngModel)]="editData.rewardpoint_name">
-                      <!-- <span class="help-block">This is a help text</span> -->
+                      <input type="text" maxlength="50"  name="rewardpoint_name" class="form-control" placeholder="Text" [(ngModel)]="editData.rewardpoint_name"
+                      #rewardpoint_name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && rewardpoint_name.invalid }"
+                        required>
+                        <div *ngIf="f.submitted && rewardpoint_name.invalid" class="invalid-feedback">
+                          <div *ngIf="rewardpoint_name.errors.required">Reward Name is required</div>
+                        </div>
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="text-input">Amount</label>
+                    <label class="col-md-3 col-form-label" for="text-input">Amount<b style="color:red">*</b></label>
                     <div class="col-md-9">
-                      <input type="text" maxlength="50"  name="rewardpoint_amount" class="form-control" placeholder="Text" [(ngModel)]="editData.rewardpoint_amount">
-                      <!-- <span class="help-block">This is a help text</span> -->
+                      <input type="number" maxlength="50"  name="rewardpoint_amount" class="form-control" placeholder="Text" [(ngModel)]="editData.rewardpoint_amount"
+                      #rewardpoint_amount="ngModel" [ngClass]="{ 'is-invalid': f.submitted && rewardpoint_amount.invalid }"
+                        required>
+                        <div *ngIf="f.submitted && rewardpoint_amount.invalid" class="invalid-feedback">
+                          <div *ngIf="rewardpoint_amount.errors.required">Amount is required</div>
+                        </div>
                     </div>
                   </div>
-                  <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="text-input">Status	</label>
-                    <div class="col-md-9">
-                      <input type="text" maxlength="50"  name="rewardpoint_status" class="form-control" placeholder="Text" [(ngModel)]="editData.rewardpoint_status" disabled>
-                      <!-- <span class="help-block">This is a help text</span> -->
-                    </div>
-                  </div>
+                  <button  class="btn btn-primary" >Save Changes</button>
                 </form>
               </div>
             </div>
@@ -126,8 +128,8 @@ aria-hidden="true">
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="largeModal.hide()">Close</button>
-        <button type="button" class="btn btn-primary" (click)="updatePromotion(editData);largeModal.hide();" >Save changes</button>
+        <button type="button" id="CloseButtonCreate" class="btn btn-secondary" (click)="largeModal.hide()">Close</button>
+        <!-- <button type="button" class="btn btn-primary" (click)="updatePromotion(editData);largeModal.hide();" >Save changes</button> -->
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
