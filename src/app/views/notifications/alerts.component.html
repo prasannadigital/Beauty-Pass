@@ -35,7 +35,7 @@
                 <strong>Edit Testmonail</strong>
               </div>
               <div class="card-body">
-                <form  class="form-horizontal">
+                <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
                   <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="text-input">User Name</label>
                     <div class="col-md-9">
@@ -46,52 +46,73 @@
                   <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="text-input">Comments</label>
                     <div class="col-md-9">
-                      <input type="text" maxlength="50"  name="comments" class="form-control" placeholder="Text" [(ngModel)]="editData.comments">
+                      <textarea type="text" maxlength="500" rows="5"  name="comments" class="form-control" placeholder="Text" [(ngModel)]="editData.comments"></textarea>
                       <!-- <span class="help-block">This is a help text</span> -->
                     </div>
                   </div>
                   <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="text-input">Recomment</label>
                     <div class="col-md-9">
-                      <input type="text" maxlength="50"  name="recomment" class="form-control" placeholder="Text" [(ngModel)]="editData.recomment">
+                      <textarea type="text"  maxlength="500" rows="5"   name="recomment" class="form-control" placeholder="Text" [(ngModel)]="editData.recomment"></textarea>
                       <!-- <span class="help-block">This is a help text</span> -->
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="text-input">Rating_1</label>
+                    <label class="col-md-3 col-form-label" for="text-input">Rating_1<b style="color:red">*</b></label>
                     <div class="col-md-9">
-                      <input type="number" maxlength="50"  name="rating_1" class="form-control" placeholder="Text" [(ngModel)]="editData.rating_1">
-                      <!-- <span class="help-block">This is a help text</span> -->
+                      <input type="number" maxlength="1"  name="rating_1" class="form-control" placeholder="Value" [(ngModel)]="editData.rating_1"
+                      #rating_1="ngModel" [ngClass]="{ 'is-invalid': f.submitted && rating_1.invalid }"
+                      required>
+                      <div *ngIf="f.submitted && rating_1.invalid" class="invalid-feedback">
+                        <div *ngIf="rating_1.errors.required">Rating Value is required</div>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="text-input">Rating_2</label>
+                    <label class="col-md-3 col-form-label" for="text-input">Rating_2<b style="color:red">*</b></label>
                     <div class="col-md-9">
-                      <input type="number" maxlength="50"  name="rating_2" class="form-control" placeholder="Text" [(ngModel)]="editData.rating_2">
-                      <!-- <span class="help-block">This is a help text</span> -->
+                      <input type="number" maxlength="1"  name="rating_2" class="form-control" placeholder="Value" [(ngModel)]="editData.rating_2"
+                      #rating_2="ngModel" [ngClass]="{ 'is-invalid': f.submitted && rating_2.invalid }"
+                      required>
+                      <div *ngIf="f.submitted && rating_2.invalid" class="invalid-feedback">
+                        <div *ngIf="rating_2.errors.required">Rating Value is required</div>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="text-input">Rating_3</label>
+                    <label class="col-md-3 col-form-label" for="text-input">Rating_3<b style="color:red">*</b></label>
                     <div class="col-md-9">
-                      <input type="number" maxlength="50"  name="rating_3" class="form-control" placeholder="Text" [(ngModel)]="editData.rating_3">
-                      <!-- <span class="help-block">This is a help text</span> -->
+                      <input type="number" maxlength="1"  name="rating_3" class="form-control" placeholder="Value" [(ngModel)]="editData.rating_3"
+                      #rating_3="ngModel" [ngClass]="{ 'is-invalid': f.submitted && rating_3.invalid }"
+                        required>
+                      <div *ngIf="f.submitted && rating_3.invalid" class="invalid-feedback">
+                        <div *ngIf="rating_3.errors.required">Rating Value is required</div>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="text-input">Rating_4</label>
+                    <label class="col-md-3 col-form-label" for="text-input">Rating_4<b style="color:red">*</b></label>
                     <div class="col-md-9">
-                      <input type="number" maxlength="50"  name="rating_4" class="form-control" placeholder="Text" [(ngModel)]="editData.rating_4">
-                      <!-- <span class="help-block">This is a help text</span> -->
+                      <input type="number" maxlength="1"  name="rating_4" class="form-control" placeholder="Value" [(ngModel)]="editData.rating_4"
+                      #rating_4="ngModel" [ngClass]="{ 'is-invalid': f.submitted && rating_4.invalid }"
+                        required>
+                      <div *ngIf="f.submitted && rating_4.invalid" class="invalid-feedback">
+                        <div *ngIf="rating_4.errors.required">Rating Value is required</div>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="text-input">Rating_5</label>
+                    <label class="col-md-3 col-form-label" for="text-input">Rating_5<b style="color:red">*</b></label>
                     <div class="col-md-9">
-                      <input type="number" maxlength="50"  name="rating_5" class="form-control" placeholder="Text" [(ngModel)]="editData.rating_5">
-                      <!-- <span class="help-block">This is a help text</span> -->
+                      <input type="number" maxlength="1"  name="rating_5" class="form-control" placeholder="Value" [(ngModel)]="editData.rating_5"
+                      #rating_5="ngModel" [ngClass]="{ 'is-invalid': f.submitted && rating_5.invalid }"
+                      required>
+                      <div *ngIf="f.submitted && rating_5.invalid" class="invalid-feedback">
+                        <div *ngIf="rating_5.errors.required">Rating Value is required</div>
+                      </div>
                     </div>
                   </div>
+                  <button class="btn btn-primary">Save changes</button>
                 </form>
               </div>
             </div>
@@ -99,8 +120,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="largeModal.hide()">Close</button>
-        <button type="button" class="btn btn-primary" (click)="updatePromotion(editData);largeModal.hide();add();" >Save changes</button>
+        <button type="button" id="CloseButton" class="btn btn-secondary" (click)="largeModal.hide()">Close</button>
+        <!-- <button type="button" class="btn btn-primary" (click)="updatePromotion(editData);largeModal.hide();add();" >Save changes</button> -->
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

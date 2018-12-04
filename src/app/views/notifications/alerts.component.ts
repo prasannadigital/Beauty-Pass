@@ -76,6 +76,7 @@ editPromotion(data, index) {
   console.log(this.editData.length)
 }
 updatePromotion(val) {
+  let element = document.getElementById("CloseButton");
   console.log(val)
   var data = {
     comments: val.comments,
@@ -96,6 +97,12 @@ updatePromotion(val) {
     msg: `Testmonial Details Updated Successfully`,
     timeout: 5000
   });
+  this.add();
+  element.click();
+}
+onSubmit() {
+  //console.log(this.editData.tip_title);
+  this.updatePromotion(this.editData);
 }
 DeletePromotion(val) {
   console.log(val)
