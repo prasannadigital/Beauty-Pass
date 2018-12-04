@@ -35,21 +35,30 @@ aria-hidden="true">
               <strong>Edit Coupons</strong> 
             </div>
             <div class="card-body">
-              <form  class="form-horizontal">
+              <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="text-input">Coupon Number</label>
+                  <label class="col-md-3 col-form-label" for="text-input">Coupon Number<b style="color:red">*</b></label>
                   <div class="col-md-9">
-                    <input type="text" maxlength="50"  name="coupons_number" class="form-control" placeholder="Text" [(ngModel)]="editData.coupons_number">
-                    <!-- <span class="help-block">This is a help text</span> -->
+                    <input type="text" maxlength="50"  name="coupons_number" class="form-control" placeholder="Text" [(ngModel)]="editData.coupons_number"
+                    #coupons_number="ngModel" [ngClass]="{ 'is-invalid': f.submitted && coupons_number.invalid }"
+                    required>
+                    <div *ngIf="f.submitted && coupons_number.invalid" class="invalid-feedback">
+                      <div *ngIf="coupons_number.errors.required">Coupon Number is required</div>
+                    </div>
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label class="col-md-3 col-form-label" for="text-input">Cost</label>
+                  <label class="col-md-3 col-form-label" for="text-input">Cost<b style="color:red">*</b></label>
                   <div class="col-md-9">
-                    <input type="text" maxlength="50"  name="coupons_for" class="form-control" placeholder="Text" [(ngModel)]="editData.coupons_for">
-                    <!-- <span class="help-block">This is a help text</span> -->
+                    <input type="text" maxlength="10"  name="coupons_for" class="form-control" placeholder="Text" [(ngModel)]="editData.coupons_for"
+                    #coupons_for="ngModel" [ngClass]="{ 'is-invalid': f.submitted && coupons_for.invalid }"
+                    required>
+                    <div *ngIf="f.submitted && coupons_for.invalid" class="invalid-feedback">
+                      <div *ngIf="coupons_for.errors.required">Cost is required</div>
+                    </div>
                   </div>
                 </div>
+                <button  class="btn btn-primary" style="margin-left:26%">Save changes</button>
               </form>
             </div>
           </div>
@@ -57,8 +66,8 @@ aria-hidden="true">
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" (click)="largeModal.hide()">Close</button>
-      <button type="button" class="btn btn-primary" (click)="updatePromotion(editData);largeModal.hide();add();" >Save changes</button>
+      <button type="button" id="CloseButton" class="btn btn-secondary" (click)="largeModal.hide()">Close</button>
+     
     </div>
   </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->

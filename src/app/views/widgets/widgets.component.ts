@@ -70,7 +70,12 @@ export class WidgetsComponent implements OnInit {
     this.editData = data;
     console.log(this.editData)
   }
+  onSubmit() {
+    //console.log(this.editData.tip_title);
+    this.updatePromotion(this.editData);
+  }
   updatePromotion(val) {
+    let element = document.getElementById("CloseButton");
     console.log(val)
     var data = {
       coupons_id: val.coupons_id,
@@ -80,6 +85,8 @@ export class WidgetsComponent implements OnInit {
       createdempid:this.userData[0].employee_id
     }
     this.service.editMindBodyCoupons(data).subscribe();
+    this.add();
+    element.click();
   }
   DeletePromotion(val) {
     console.log(val)
