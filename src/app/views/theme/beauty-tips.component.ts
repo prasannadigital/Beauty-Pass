@@ -56,7 +56,7 @@ export class BeautyTipsComponent implements OnInit {
   ngOnInit() {
     setInterval(() => {
       this.getList();
-    }, 2000);
+    }, 10000);
     this.userData=JSON.parse(sessionStorage.getItem('loginDetails'));
     console.log(this.userData[0].employee_id);
 

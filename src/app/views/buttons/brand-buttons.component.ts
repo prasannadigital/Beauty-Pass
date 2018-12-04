@@ -70,7 +70,18 @@ export class BrandButtonsComponent implements OnInit {
     this.editData = data;
     console.log(this.editData)
   }
+  onSubmit() {
+    //console.log(this.editData.tip_title);
+    this.updatePromotion(this.editData);
+  }
   updatePromotion(val) {
+    let element = document.getElementById("CloseButton");
+    if(val.rewardpoint_id){
+     
+      this.add();
+    }else{
+      this.addCreate();
+    }
     console.log(val)
     var data = {
       rewardpoint_id: val.rewardpoint_id,
@@ -83,7 +94,8 @@ export class BrandButtonsComponent implements OnInit {
     this.categorysData=[];
     this.service.getPerksList().subscribe(response => {
       this.categorysData = response.json().data;
-      console.log(this.categorysData)
+      console.log(this.categorysData);
+      element.click();
     });
   }
   DeletePromotion(val) {
