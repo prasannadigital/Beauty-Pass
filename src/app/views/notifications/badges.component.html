@@ -51,7 +51,7 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="text-input">Likes	</label>
+                    <label class="col-md-3 col-form-label" for="text-input">Likes	<b style="color:red">*</b></label>
                     <div class="col-md-9">
                       <input type="number" maxlength="50"  name="likes" class="form-control" placeholder="Text" [(ngModel)]="editData.likes"
                       #likes="ngModel" [ngClass]="{ 'is-invalid': f.submitted && likes.invalid }"

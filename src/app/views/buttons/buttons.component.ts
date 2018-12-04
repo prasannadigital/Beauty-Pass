@@ -66,12 +66,17 @@ export class ButtonsComponent implements OnInit {
       msg: `<strong>Warning!</strong> Better check yourself, you're not looking too good.`
     }
   ];
+  onSubmit() {
+    //console.log(this.editData.tip_title);
+    this.updatePromotion(this.editData);
+  }
   editPromotion(data, index) {
     data.index = index;
     this.editData = data;
     console.log(this.editData)
   }
   updatePromotion(val) {
+    let element = document.getElementById("CloseButton");
     console.log(val)
     var data = {
       activity_id: val.activity_id,
@@ -81,6 +86,8 @@ export class ButtonsComponent implements OnInit {
       activity_status:val.activity_status
     }
     this.service.editUserActivitiesList(data).subscribe();
+    this.add();
+    element.click();
   }
   DeletePromotion(val) {
     console.log(val)
