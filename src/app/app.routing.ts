@@ -47,7 +47,7 @@ export const routes: Routes = [
     },
     children: [
       {
-        path: 'base',
+        path: 'reports',
         loadChildren: './views/base/base.module#BaseModule'
       },
       {

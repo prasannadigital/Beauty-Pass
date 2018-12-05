@@ -9,6 +9,7 @@ declare var jsPDF: any;
 export class CardsComponent implements OnInit {
   categorysData: any;
   startDate: any;
+  endDate: any;
 
   constructor(private router: Router,private service: ReportsService,private excelService:ExcelService) { }
 
@@ -18,8 +19,11 @@ ngOnInit(){
     console.log(this.categorysData);
   });
 }
-getDate(){
+getStartDate(){
   console.log(this.startDate);
+}
+getEndDate(){
+  console.log(this.endDate);
 }
 exportAsXLSX():void {
   this.excelService.exportAsExcelFile(this.categorysData, 'Voucher-Reports');

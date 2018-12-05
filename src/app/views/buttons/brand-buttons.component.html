@@ -1,7 +1,7 @@
 <div class="card-body">
   <div class="row">
     <div class="col-6 col-sm-4 col-md text-center">
-      <button type="button" (click)="largeModalCreate.show();f.reset();" class="btn btn-primary" style="float: right;"><i class="fa fa-lightbulb-o"></i>&nbsp;Create Reward</button>
+      <button type="button" (click)="f1.reset();largeModalCreate.show();" class="btn btn-primary" style="float: right;"><i class="fa fa-lightbulb-o"></i>&nbsp;Create Reward</button>
     </div> 
   </div>
 </div>
@@ -42,14 +42,14 @@ aria-hidden="true">
               <strong>Create Reward</strong>
             </div>
             <div class="card-body">
-              <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+              <form name="form" (ngSubmit)="f1.form.valid && onSubmit()" #f1="ngForm" novalidate>
                 <div class="form-group row">
                   <label class="col-md-3 col-form-label" for="text-input">Reward Name<b style="color:red">*</b></label>
                   <div class="col-md-9">
                     <input type="text" maxlength="50"  name="rewardpoint_name" class="form-control" placeholder="Text" [(ngModel)]="editData.rewardpoint_name"
-                    #rewardpoint_name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && rewardpoint_name.invalid }"
+                    #rewardpoint_name="ngModel" [ngClass]="{ 'is-invalid': f1.submitted && rewardpoint_name.invalid }"
                       required>
-                      <div *ngIf="f.submitted && rewardpoint_name.invalid" class="invalid-feedback">
+                      <div *ngIf="f1.submitted && rewardpoint_name.invalid" class="invalid-feedback">
                         <div *ngIf="rewardpoint_name.errors.required">Reward Name is required</div>
                       </div>
                   </div>
@@ -58,9 +58,9 @@ aria-hidden="true">
                   <label class="col-md-3 col-form-label" for="text-input">Amount<b style="color:red">*</b></label>
                   <div class="col-md-9">
                     <input type="number" maxlength="50"  name="rewardpoint_amount" class="form-control" placeholder="Text" [(ngModel)]="editData.rewardpoint_amount"
-                    #rewardpoint_amount="ngModel" [ngClass]="{ 'is-invalid': f.submitted && rewardpoint_amount.invalid }"
+                    #rewardpoint_amount="ngModel" [ngClass]="{ 'is-invalid': f1.submitted && rewardpoint_amount.invalid }"
                       required>
-                      <div *ngIf="f.submitted && rewardpoint_amount.invalid" class="invalid-feedback">
+                      <div *ngIf="f1.submitted && rewardpoint_amount.invalid" class="invalid-feedback">
                         <div *ngIf="rewardpoint_amount.errors.required">Amount is required</div>
                       </div>
                   </div>

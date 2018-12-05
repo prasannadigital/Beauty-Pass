@@ -17,14 +17,14 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Base'
+      title: 'Reports'
     },
     children: [
       {
-        path: 'cards',
+        path: 'voucher',
         component: CardsComponent,
         data: {
-          title: 'Cards'
+          title: 'Voucher-Reports'
         }
       },
       {
@@ -35,10 +35,10 @@ const routes: Routes = [
         }
       },
       {
-        path: 'switches',
+        path: 'logs',
         component: SwitchesComponent,
         data: {
-          title: 'Switches'
+          title: 'Log-Reports'
         }
       },
       {
@@ -56,10 +56,10 @@ const routes: Routes = [
         }
       },
       {
-        path: 'carousels',
+        path: 'user-activity',
         component: CarouselsComponent,
         data: {
-          title: 'Carousels'
+          title: 'User-Activity'
         }
       },
       {
@@ -84,10 +84,10 @@ const routes: Routes = [
         }
       },
       {
-        path: 'progress',
+        path: 'perks',
         component: ProgressComponent,
         data: {
-          title: 'Progress'
+          title: 'Perk-Reports'
         }
       },
       {

@@ -65,17 +65,17 @@ export const navItems = [
   },
   {
     name: 'Reports',
-    url: '/base',
+    url: '/reports',
     icon: 'icon-note',
     children: [
      {
       name: 'Voucher Reports',
-         url: '/base/cards',
+         url: '/reports/voucher',
       icon: 'icon-note'
        },
        {
          name: 'User Activity Reports',
-       url: '/base/carousels',
+       url: '/reports/user-activity',
        icon: 'icon-note'
      },
       // {
@@ -100,12 +100,12 @@ export const navItems = [
       //  },
       {
         name: 'Pearks and Rewards',
-        url: '/base/progress',
+        url: '/reports/perks',
          icon: 'icon-note'
       },
        {
          name: 'Employee Log History',
-       url: '/base/switches',
+       url: '/reports/logs',
         icon: 'icon-note'
       },
       // {

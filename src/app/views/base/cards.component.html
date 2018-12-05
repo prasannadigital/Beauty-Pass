@@ -1,7 +1,15 @@
 <div class="card-body">
-  <div class="row">
-      <div class="col-sm-8">
-        <input type="date" [(ngModel)]="startDate" (ngModelChange)="getDate($event);"/>
+  <div class="form-group row">
+      <div class="col-sm-4">
+          <label style="margin-right: 10px;"><b>Start Date :</b></label>
+        <input type="date" [(ngModel)]="startDate" (ngModelChange)="getStartDate($event);"/>
+      </div>
+      <div class="col-sm-4">
+          <label style="margin-right: 10px;"><b>End Date :</b></label>
+        <input type="date" [(ngModel)]="endDate" (ngModelChange)="getEndDate($event);"/>
+      </div>
+      <div class="col-sm-4">
+      <button class="btn btn-sm btn-primary" (click)="getReports();"><b> Submit </b></button>
       </div>
   </div>
 </div>
