@@ -24,7 +24,10 @@ export class DashboardComponent implements OnInit {
   mindBodyDatalength: number;
   perksDataLength: number;
   actvitiesDataLength:number;
+  maleUserCount:number;
+  femaleUserCount:number;
   categorysData: any;
+  test:any;
   constructor(private service: DashboardService){
   }
   ngOnInit(){
@@ -34,6 +37,16 @@ export class DashboardComponent implements OnInit {
       this.mainChartData2.push(this.random(80, 100));
       this.mainChartData3.push(65);
     }
+    this.service.getMaleCount().subscribe(response => {
+      this.maleUserCount = response.json().data[0].total /100;
+     // this.userDataLength=this.userData.length
+      console.log( this.maleUserCount);
+    }); 
+    this.service.getFemaleCount().subscribe(response => {
+      this.femaleUserCount = response.json().data[0].total /100;
+     // this.userDataLength=this.userData.length
+      console.log( this.femaleUserCount);
+    });
    this.service.getUsersList().subscribe(response => {
     this.userData = response.json().data;
     this.userDataLength=this.userData.length

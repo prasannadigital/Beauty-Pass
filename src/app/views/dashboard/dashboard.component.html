@@ -279,11 +279,11 @@
                 <div class="progress-group-header">
                   <i class="icon-user progress-group-icon"></i>
                   <div>Male</div>
-                  <div class="ml-auto font-weight-bold">43%</div>
+                  <div class="ml-auto font-weight-bold">{{maleUserCount | percent}}</div>
                 </div>
                 <div class="progress-group-bars">
                   <div class="progress progress-xs">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 43%" aria-valuenow="43"
+                    <div class="progress-bar bg-warning" role="progressbar" [style.width]="maleUserCount | percent" 
                       aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
@@ -292,11 +292,11 @@
                 <div class="progress-group-header">
                   <i class="icon-user-female progress-group-icon"></i>
                   <div>Female</div>
-                  <div class="ml-auto font-weight-bold">37%</div>
+                  <div class="ml-auto font-weight-bold">{{femaleUserCount | percent}}</div>
                 </div>
                 <div class="progress-group-bars">
                   <div class="progress progress-xs">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 43%" aria-valuenow="43"
+                    <div class="progress-bar bg-warning" role="progressbar" [style.width]="femaleUserCount | percent" 
                       aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>

@@ -9,6 +9,12 @@ import { environment } from '../../environments/environment';
 export class DashboardService {
 
   constructor(private http: Http) { }
+  public getMaleCount() {
+    return this.http.get(environment.host + 'get_male_users_count');
+  }
+  public getFemaleCount() {
+    return this.http.get(environment.host + 'get_female_users_count');
+  }
   public getBeautyTipsList() {
     return this.http.get(environment.host + 'show-beauty-tips');
   }

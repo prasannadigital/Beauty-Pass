@@ -11,4 +11,10 @@ export class UsersListService {
   public getUsersList() {
     return this.http.get(environment.host + 'get_users_list');
   }
+  public getMaleCount() {
+    return this.http.get(environment.host + 'get_male_users_count');
+  }
+  public getFemaleCount() {
+    return this.http.get(environment.host + 'get_female_users_count');
+  }
 }

@@ -1,12 +1,10 @@
-<!-- <div class="card-body">
+<div class="card-body">
   <div class="row">
-      <div class="col-sm-8"></div>
-    <div class="col-sm-4 printOptions">
-     <span> <i (click)="exportAsXLSX()" class="fa fa-file-excel-o"style="font-size:24px;color:blue;margin-right: 20px;cursor: pointer;"></i></span> 
-     <span>  <i (click)="pdfDownload()" class="fa fa-file-pdf-o" style="font-size:24px;color:red;cursor: pointer;"></i></span> 
-    </div>
+      <div class="col-sm-8">
+        <input type="date" [(ngModel)]="startDate" (ngModelChange)="getDate($event);"/>
+      </div>
   </div>
-</div> -->
+</div>
 <div class="animated fadeIn">
   <div class="row">
     <div class="col-lg-12">
