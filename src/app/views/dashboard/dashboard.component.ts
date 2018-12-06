@@ -26,31 +26,30 @@ export class DashboardComponent implements OnInit {
   actvitiesDataLength:number;
   maleUserCount:number;
   femaleUserCount:number;
+  totalUsers:number;
   categorysData: any;
   test:any;
+  num1:number;
+  num2:number;
   constructor(private service: DashboardService){
   }
   ngOnInit(){
     // generate random values for mainChart
     for (let i = 0; i <= this.mainChartElements; i++) {
       this.mainChartData1.push(this.random(50, 200));
-      this.mainChartData2.push(this.random(80, 100));
-      this.mainChartData3.push(65);
+     // this.mainChartData2.push(this.random(80, 100));
+     // this.mainChartData3.push(65);
+      //console.log(this.mainChartData1);
+      //console.log(i);
+     // console.log(this.mainChartData2);
+      //console.log(this.mainChartData3);
+
     }
-    this.service.getMaleCount().subscribe(response => {
-      this.maleUserCount = response.json().data[0].total /100;
-     // this.userDataLength=this.userData.length
-      console.log( this.maleUserCount);
-    }); 
-    this.service.getFemaleCount().subscribe(response => {
-      this.femaleUserCount = response.json().data[0].total /100;
-     // this.userDataLength=this.userData.length
-      console.log( this.femaleUserCount);
-    });
+
    this.service.getUsersList().subscribe(response => {
     this.userData = response.json().data;
     this.userDataLength=this.userData.length
-    console.log(this.userData.length);
+   // console.log(this.userData.length);
   }); 
   this.service.getRecentUsersList().subscribe(response => {
     this.categorysData = response.json().data;
@@ -59,7 +58,7 @@ export class DashboardComponent implements OnInit {
   this.service.getBeautyTipsList().subscribe(response => {
     this.tipsData = response.json().data;
    this.tipsDataLength= this.tipsData.length
-    console.log(this.tipsData.length);
+    //console.log(this.tipsData.length);
   }); 
   this.service.getUserActivitiesList().subscribe(response => {
     this.activitiesData = response.json().data;
@@ -69,23 +68,47 @@ export class DashboardComponent implements OnInit {
   this.service.getVideoTestmonials().subscribe(response => {
     this.videoData = response.json().data;
     this.videoDatalength=this.videoData.length;
-    console.log(this.videoData.length);
+   // console.log(this.videoData.length);
   }); 
   this.service.getWrittenTestmonials().subscribe(response => {
     this.writtenData = response.json().data;
     this.writtenDataLength = this.writtenData.length
-    console.log(this.writtenData.length);
+   // console.log(this.writtenData.length);
   }); 
   this.service.getMindBodyCoupons().subscribe(response => {
     this.mindBodyData = response.json().data;
     this.mindBodyDatalength = this.mindBodyData.length
-    console.log(this.mindBodyData.length);
+   //console.log(this.mindBodyData.length);
   }); 
   this.service.getPerksList().subscribe(response => {
     this.perksData = response.json().data;
     this.perksDataLength =this.perksData.length
-    console.log(this.perksData.length);
+    //console.log(this.perksData.length);
   });
+  this.userCount();
+  }
+  userCount(){
+    this.service.getMaleCount().subscribe(response => {
+      this.num1 = response.json().data[0].total;
+     // this.userDataLength=this.userData.length
+    //.log( this.maleUserCount);
+    }); 
+    this.service.getFemaleCount().subscribe(response => {
+      this.num2 = response.json().data[0].total;
+     // this.userDataLength=this.userData.length
+     //console.log( this.femaleUserCount);
+    
+    });
+    
+  }
+  testFun(){
+    this.totalUsers=this.num1 + this.num2;
+    this.maleUserCount=Math.round(((this.num1)/(this.totalUsers))*100)
+    this.femaleUserCount=100-this.maleUserCount;
+    this.maleUserCount=this.maleUserCount/100;
+    this.femaleUserCount=this.femaleUserCount/100;
+   // console.log( this.totalUsers);
+    console.log( this.maleUserCount);
   }
   radioModel: string = 'Month';
 
