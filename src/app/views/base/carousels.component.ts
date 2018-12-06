@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RefferalRewardsService } from '../../services/refferal-rewards.service';
 import { ExcelService } from '../../services/excel.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 declare var jsPDF: any;
 
 
@@ -16,13 +17,15 @@ export class CarouselsComponent implements OnInit {
   editData: any = [];
   bigCurrentPage: number = 1;
   deleteData: { activity_id: any; activity_name: any; activity_points: any; activity_desc: any; activity_status: number; };
-  constructor(private router: Router,private excelService:ExcelService ,private service: RefferalRewardsService ,sanitizer: DomSanitizer) {
+  constructor(private spinner: NgxSpinnerService,private router: Router,private excelService:ExcelService ,private service: RefferalRewardsService ,sanitizer: DomSanitizer) {
    
    }
    ngOnInit() {
+    this.spinner.show();
     this.service.getUserActivitiesList().subscribe(response => {
       this.categorysData = response.json().data;
-      console.log(this.categorysData)
+      console.log(this.categorysData);
+      this.spinner.hide();
     });
   
   }

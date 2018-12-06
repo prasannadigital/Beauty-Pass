@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AlertModule} from 'ngx-bootstrap/alert';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   imports: [
     WidgetsRoutingModule,
@@ -16,6 +17,7 @@ import { AlertModule} from 'ngx-bootstrap/alert';
     CommonModule,
     BsDropdownModule,
     NgxPaginationModule,
+    NgxSpinnerModule,
     AlertModule.forRoot(),
     ModalModule.forRoot()
   ],

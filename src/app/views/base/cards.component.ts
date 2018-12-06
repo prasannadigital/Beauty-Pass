@@ -2,6 +2,7 @@ import { Component,OnInit} from '@angular/core';
 import { ReportsService } from '../../services/reports.service';
 import { Router } from '@angular/router';
 import { ExcelService } from '../../services/excel.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 declare var jsPDF: any;
 @Component({
   templateUrl: 'cards.component.html'
@@ -11,12 +12,14 @@ export class CardsComponent implements OnInit {
   startDate: any;
   endDate: any;
 
-  constructor(private router: Router,private service: ReportsService,private excelService:ExcelService) { }
+  constructor(private spinner: NgxSpinnerService,private router: Router,private service: ReportsService,private excelService:ExcelService) { }
 
 ngOnInit(){
+  this.spinner.show();
   this.service.getVoucherReports().subscribe(response => {
     this.categorysData = response.json().data;
     console.log(this.categorysData);
+    this.spinner.hide();
   });
 }
 getStartDate(){

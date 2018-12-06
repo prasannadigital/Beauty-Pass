@@ -4,6 +4,7 @@ import { AlertConfig } from 'ngx-bootstrap/alert';
 import { Router } from '@angular/router';
 import { RefferalRewardsService } from '../../services/refferal-rewards.service';
 import { ExcelService } from '../../services/excel.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 declare var jsPDF: any;
 @Component({
   templateUrl: 'progress.component.html'
@@ -13,13 +14,15 @@ export class ProgressComponent implements OnInit {
   categorysData: any;
   editData: any = [];
   bigCurrentPage: number = 1;
-  constructor(private excelService:ExcelService,private router: Router,private service: RefferalRewardsService ,sanitizer: DomSanitizer) {
+  constructor(private spinner: NgxSpinnerService,private excelService:ExcelService,private router: Router,private service: RefferalRewardsService ,sanitizer: DomSanitizer) {
    
    }
    ngOnInit() {
+    this.spinner.show();
     this.service.getPerksList().subscribe(response => {
       this.categorysData = response.json().data;
       console.log(this.categorysData)
+      this.spinner.hide();
     });
   
   }

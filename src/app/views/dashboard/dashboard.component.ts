@@ -4,6 +4,7 @@ import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
 import { DashboardService } from '../../services/dashboard.service';
 import {CommonModule} from '@angular/common';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   templateUrl: 'dashboard.component.html'
 })
@@ -31,9 +32,10 @@ export class DashboardComponent implements OnInit {
   test:any;
   num1:number;
   num2:number;
-  constructor(private service: DashboardService){
+  constructor(private spinner: NgxSpinnerService,private service: DashboardService){
   }
   ngOnInit(){
+   
     // generate random values for mainChart
     //for (let i = 0; i <= this.mainChartElements; i++) {
       this.mainChartData1.push(10,12,14,16);
@@ -56,10 +58,11 @@ export class DashboardComponent implements OnInit {
       //console.log(this.mainChartData3);
 
     //}
-
+    this.spinner.show();
    this.service.getUsersList().subscribe(response => {
     this.userData = response.json().data;
     this.userDataLength=this.userData.length
+    this.spinner.hide();
    // console.log(this.userData.length);
   }); 
   this.service.getRecentUsersList().subscribe(response => {
@@ -97,6 +100,7 @@ export class DashboardComponent implements OnInit {
     //console.log(this.perksData.length);
   });
   this.userCount();
+  this.spinner.hide();
   }
   userCount(){
     this.service.getMaleCount().subscribe(response => {

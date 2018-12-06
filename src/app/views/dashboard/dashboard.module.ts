@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 //import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   imports: [
     FormsModule,
@@ -14,6 +15,7 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     ChartsModule,
     BsDropdownModule,
+    NgxSpinnerModule,
     ButtonsModule.forRoot()
   ],
   declarations: [ DashboardComponent ]
