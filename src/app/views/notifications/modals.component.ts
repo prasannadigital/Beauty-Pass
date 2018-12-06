@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { AlertConfig } from 'ngx-bootstrap/alert';
 import { Router } from '@angular/router';
 import { TestmonialsService } from '../../services/TestmonialsService';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 // such override allows to keep some initial values
 
@@ -37,7 +38,7 @@ export class ModalsComponent {
   bigCurrentPage: number = 1;
   deleteConfirm: boolean;
   deleteData: { testimonial_id: any; user_id: any; rating_1: any; rating_2: any; rating_3: any; rating_4: any; rating_5: any; comments: any; status: number; recomment: any; uploadpic: any; };
-  constructor(private router: Router,private service: TestmonialsService ,sanitizer: DomSanitizer) {
+  constructor(private spinner: NgxSpinnerService,private router: Router,private service: TestmonialsService ,sanitizer: DomSanitizer) {
     this.alertsHtml = this.alertsHtml.map((alert: any) => ({
       type: alert.type,
       msg: sanitizer.sanitize(SecurityContext.HTML, alert.msg)
@@ -61,9 +62,11 @@ export class ModalsComponent {
     this.router.navigate(['reports'])
   }
   ngOnInit() {
+    this.spinner.show();
   this.service.getWrittenTestmonials().subscribe(response => {
     this.categorysData = response.json().data;
     console.log(this.categorysData)
+    this.spinner.hide();
   });
 
 }

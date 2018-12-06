@@ -17,6 +17,7 @@ import { NotificationsRoutingModule } from './notifications-routing.module';
 import { FormsModule } from '@angular/forms';
 import { PaginatorModule } from 'primeng/paginator';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AlertModule,
     PaginatorModule,
     NgxPaginationModule,
+    NgxSpinnerModule,
     NotificationsRoutingModule,
     AlertModule.forRoot(),
     ModalModule.forRoot()

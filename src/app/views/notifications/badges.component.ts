@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TestmonialsService } from "../../services/TestmonialsService";
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   templateUrl: 'badges.component.html'
 })
@@ -10,16 +11,18 @@ export class BadgesComponent {
   editData: any = []
   deleteData: { testimonial_id: any; description: any; video: any; user_id: any; likes: any; video_thumbnail: any; rec_status: number; };
   userData: any;
-  constructor(private router: Router,private service: TestmonialsService) { }
+  constructor(private spinner: NgxSpinnerService,private router: Router,private service: TestmonialsService) { }
   backToDashBoard() {
     this.router.navigate(['reports'])
   }
   ngOnInit() {
+    this.spinner.show();
   this.service.getVideoTestmonials().subscribe(response => {
     this.categorysData = response.json().data;
     console.log(this.categorysData);
     this.userData=JSON.parse(sessionStorage.getItem('loginDetails'));
     console.log(this.userData[0].employee_id);
+    this.spinner.hide();
   });
 }
 editPromotion(data, index) {
