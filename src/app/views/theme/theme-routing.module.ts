@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Theme'
+      title: 'Admin'
     },
     children: [
       {
@@ -28,7 +28,7 @@ const routes: Routes = [
         
       },
       {
-        path: 'users',
+        path: 'employees',
         component: UsersComponent,
         data: {
           title: 'Employees'

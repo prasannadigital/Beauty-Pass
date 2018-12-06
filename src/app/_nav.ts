@@ -11,7 +11,7 @@ export const navItems = [
  },
  {
   name: 'Employee',
-  url: '/theme/users',
+  url: '/admin/employees',
   icon: 'icon-people'
 },
   {
@@ -55,7 +55,7 @@ export const navItems = [
   },
   {
     name: 'Beauty Tips',
-    url: '/theme/beauty-tips',
+    url: '/admin/beauty-tips',
     icon: 'icon-user-female'
   },
   {
