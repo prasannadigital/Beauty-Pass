@@ -12,6 +12,7 @@ import { DropdownsComponent } from './dropdowns.component';
 // Buttons Routing
 import { ButtonsRoutingModule } from './buttons-routing.module';
 import { ModalModule, AlertModule } from "ngx-bootstrap";
+import { NgxSpinnerModule } from 'ngx-spinner';
 // Angular
 
 @NgModule({
@@ -22,6 +23,7 @@ import { ModalModule, AlertModule } from "ngx-bootstrap";
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
     AlertModule.forRoot(),
+    NgxSpinnerModule,
     FormsModule
   ],
   declarations: [

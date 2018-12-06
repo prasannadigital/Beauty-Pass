@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { AlertConfig } from 'ngx-bootstrap/alert';
 import { Router } from '@angular/router';
 import { BeautyTipsService } from '../../services/beauty-tips.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 // such override allows to keep some initial values
 declare var $: any;
@@ -47,16 +48,19 @@ export class BeautyTipsComponent implements OnInit {
   alertMessageValue: boolean;
   validBtn: boolean;
   userData: any;
-  constructor(private router: Router, private service: BeautyTipsService, sanitizer: DomSanitizer) {
+  constructor(private spinner: NgxSpinnerService, private router: Router, private service: BeautyTipsService, sanitizer: DomSanitizer) {
     this.alertsHtml = this.alertsHtml.map((alert: any) => ({
       type: alert.type,
       msg: sanitizer.sanitize(SecurityContext.HTML, alert.msg)
     }));
   }
   ngOnInit() {
-    setInterval(() => {
-      this.getList();
-    }, 10000);
+    this.spinner.show();
+    this.service.getBeautyTipsList().subscribe(response => {
+      this.categorysData = response.json().data;
+      console.log(this.categorysData);
+      this.spinner.hide();
+    });
     this.userData=JSON.parse(sessionStorage.getItem('loginDetails'));
     console.log(this.userData[0].employee_id);
 
@@ -68,10 +72,7 @@ export class BeautyTipsComponent implements OnInit {
     this.updatePromotion(this.editData);
   }
   getList() {
-    this.service.getBeautyTipsList().subscribe(response => {
-      this.categorysData = response.json().data;
-      console.log(this.categorysData)
-    });
+  
   }
   alertsHtml: any = [
     {

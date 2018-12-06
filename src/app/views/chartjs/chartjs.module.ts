@@ -5,6 +5,7 @@ import { ChartJSComponent } from './chartjs.component';
 import { ChartJSRoutingModule } from './chartjs-routing.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import { FormsModule } from '@angular/forms';
     ChartsModule,
     CommonModule,
     FormsModule,
+    NgxSpinnerModule,
     NgxPaginationModule
   ],
   declarations: [ ChartJSComponent ]

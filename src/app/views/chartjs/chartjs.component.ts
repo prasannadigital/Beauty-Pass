@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { AlertConfig } from 'ngx-bootstrap/alert';
 import { Router } from '@angular/router';
 import { UsersListService } from '../../services/users-list.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 // such override allows to keep some initial values
 
@@ -34,16 +35,18 @@ export class ChartJSComponent implements OnInit {
   categorysData: any;
   editData: any = [];
   bigCurrentPage: number = 1;
-  constructor(private router: Router,private service: UsersListService ,sanitizer: DomSanitizer) {
+  constructor(private spinner: NgxSpinnerService,private router: Router,private service: UsersListService ,sanitizer: DomSanitizer) {
     this.alertsHtml = this.alertsHtml.map((alert: any) => ({
       type: alert.type,
       msg: sanitizer.sanitize(SecurityContext.HTML, alert.msg)
     }));
    }
    ngOnInit() {
+    this.spinner.show();
     this.service.getUsersList().subscribe(response => {
       this.categorysData = response.json().data;
       console.log(this.categorysData)
+      this.spinner.hide();
     });
   
   }

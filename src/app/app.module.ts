@@ -7,6 +7,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpModule } from '@angular/http';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -50,6 +51,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     AppRoutingModule,
     AppAsideModule,
     AlertModule,
+    NgxSpinnerModule,
     NgxPaginationModule,
     AppBreadcrumbModule.forRoot(),
     AppFooterModule,

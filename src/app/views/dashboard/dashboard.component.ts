@@ -35,16 +35,27 @@ export class DashboardComponent implements OnInit {
   }
   ngOnInit(){
     // generate random values for mainChart
-    for (let i = 0; i <= this.mainChartElements; i++) {
-      this.mainChartData1.push(this.random(50, 200));
-     // this.mainChartData2.push(this.random(80, 100));
+    //for (let i = 0; i <= this.mainChartElements; i++) {
+      this.mainChartData1.push(10,12,14,16);
+      // this.mainChartData1.push(this.random(50, 200));
+      // this.mainChartData1.push(this.random(50, 200));
+      // this.mainChartData1.push(this.random(50, 200));
+      // this.mainChartData1.push(this.random(50, 200));
+      // this.mainChartData1.push(this.random(50, 200));
+      // this.mainChartData1.push(this.random(50, 200));
+      this.mainChartData2.push(this.random(80, 100));
+      this.mainChartData2.push(this.random(80, 100));
+      this.mainChartData2.push(this.random(80, 100));
+      this.mainChartData2.push(this.random(80, 100));
+      this.mainChartData2.push(this.random(80, 100));
+      this.mainChartData2.push(this.random(80, 100));
      // this.mainChartData3.push(65);
-      //console.log(this.mainChartData1);
+      console.log(this.mainChartData1);
       //console.log(i);
-     // console.log(this.mainChartData2);
+      console.log(this.mainChartData2);
       //console.log(this.mainChartData3);
 
-    }
+    //}
 
    this.service.getUsersList().subscribe(response => {
     this.userData = response.json().data;
@@ -90,13 +101,11 @@ export class DashboardComponent implements OnInit {
   userCount(){
     this.service.getMaleCount().subscribe(response => {
       this.num1 = response.json().data[0].total;
-     // this.userDataLength=this.userData.length
-    //.log( this.maleUserCount);
+   
     }); 
     this.service.getFemaleCount().subscribe(response => {
       this.num2 = response.json().data[0].total;
-     // this.userDataLength=this.userData.length
-     //console.log( this.femaleUserCount);
+    
     
     });
     
@@ -108,7 +117,7 @@ export class DashboardComponent implements OnInit {
     this.maleUserCount=this.maleUserCount/100;
     this.femaleUserCount=this.femaleUserCount/100;
    // console.log( this.totalUsers);
-    console.log( this.maleUserCount);
+   
   }
   radioModel: string = 'Month';
 
@@ -314,7 +323,7 @@ export class DashboardComponent implements OnInit {
 
   // mainChart
 
-  public mainChartElements = 27;
+  public mainChartElements = 30;
   public mainChartData1: Array<number> = [];
   public mainChartData2: Array<number> = [];
   public mainChartData3: Array<number> = [];
@@ -334,7 +343,7 @@ export class DashboardComponent implements OnInit {
     }
   ];
   /* tslint:disable:max-line-length */
-  public mainChartLabels: Array<any> = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Thursday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  public mainChartLabels: Array<any> = ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Thursday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday','Monday', 'Thursday',];
   /* tslint:enable:max-line-length */
   public mainChartOptions: any = {
     tooltips: {

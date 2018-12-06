@@ -4,6 +4,7 @@ import { AlertConfig } from 'ngx-bootstrap/alert';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { NgForm } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 declare var $: any;
 export function getAlertConfig(): AlertConfig {
   return Object.assign(new AlertConfig(), { type: 'success' });
@@ -62,7 +63,7 @@ export class UsersComponent implements OnInit {
     createdValue=false;
   deleteData: { employee_id: any; emp_firstname: any; emp_address: any; emp_mobile: any; emp_email: any; emp_password: any; emp_branch: any; emp_role: any; emp_status: number; };
   userData: any;
-  constructor(private service:LoginService,private router: Router, sanitizer: DomSanitizer) {
+  constructor(private spinner: NgxSpinnerService,private service:LoginService,private router: Router, sanitizer: DomSanitizer) {
     this.alertsHtml = this.alertsHtml.map((alert: any) => ({
       type: alert.type,
       msg: sanitizer.sanitize(SecurityContext.HTML, alert.msg)
@@ -197,11 +198,13 @@ export class UsersComponent implements OnInit {
    // this.updatePromotion(this.editData);
   }
 ngOnInit(){
+  this.spinner.show();
   this.service.getEmpList().subscribe(response => {
     this.categorysData = response.json().data;
     console.log(this.categorysData);
     this.userData=JSON.parse(sessionStorage.getItem('loginDetails'));
     console.log(this.userData[0].employee_id);
+    this.spinner.hide();
   });
 }
 }

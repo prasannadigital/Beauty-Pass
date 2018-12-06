@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AlertModule } from 'ngx-bootstrap';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 // Dropdowns Component
 
@@ -21,6 +22,7 @@ import { AlertModule } from 'ngx-bootstrap';
     CommonModule,
     ThemeRoutingModule,
     NgxPaginationModule,
+    NgxSpinnerModule,
     ModalModule.forRoot(),
     AlertModule.forRoot(),
     FormsModule
