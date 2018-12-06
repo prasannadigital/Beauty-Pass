@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { AlertConfig } from 'ngx-bootstrap/alert';
 import { Router } from '@angular/router';
 import { RefferalRewardsService } from '../../services/refferal-rewards.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 // such override allows to keep some initial values
 
@@ -39,16 +40,18 @@ export class DropdownsComponent {
   editData: any = [];
   bigCurrentPage: number = 1;
   getValue: number;
-  constructor(private router: Router,private service: RefferalRewardsService ,sanitizer: DomSanitizer) {
+  constructor(private spinner: NgxSpinnerService,private router: Router,private service: RefferalRewardsService ,sanitizer: DomSanitizer) {
     this.alertsHtml = this.alertsHtml.map((alert: any) => ({
       type: alert.type,
       msg: sanitizer.sanitize(SecurityContext.HTML, alert.msg)
     }));
    }
    ngOnInit() {
+    this.spinner.show();
     this.service.getUserlistForHistory().subscribe(response => {
       this.categorysData = response.json().data;
-      console.log(this.categorysData)
+      console.log(this.categorysData);
+      this.spinner.hide();
     });
   
   }

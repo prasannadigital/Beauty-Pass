@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { AlertConfig } from 'ngx-bootstrap/alert';
 import { Router } from '@angular/router';
 import { RefferalRewardsService } from '../../services/refferal-rewards.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 // such override allows to keep some initial values
 
@@ -37,18 +38,20 @@ export class ButtonsComponent implements OnInit {
   bigCurrentPage: number = 1;
   deleteData: { activity_id: any; activity_name: any; activity_points: any; activity_desc: any; activity_status: number; };
   userData: any;
-  constructor(private router: Router,private service: RefferalRewardsService ,sanitizer: DomSanitizer) {
+  constructor(private spinner: NgxSpinnerService,private router: Router,private service: RefferalRewardsService ,sanitizer: DomSanitizer) {
     this.alertsHtml = this.alertsHtml.map((alert: any) => ({
       type: alert.type,
       msg: sanitizer.sanitize(SecurityContext.HTML, alert.msg)
     }));
    }
    ngOnInit() {
+    this.spinner.show();
     this.service.getUserActivitiesList().subscribe(response => {
       this.categorysData = response.json().data;
       console.log(this.categorysData);
       this.userData=JSON.parse(sessionStorage.getItem('loginDetails'));
       console.log(this.userData[0].employee_id);
+      this.spinner.hide();
     });
   
   }
