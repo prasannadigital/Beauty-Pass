@@ -26,7 +26,7 @@ export class LoginComponent {
         console.log(this.categorysData.data[0]);
         this.spinner.hide();
         if(this.categorysData.status==true){
-          sessionStorage.setItem('loginDetails', JSON.stringify(this.categorysData.data));
+          localStorage.setItem('loginDetails', JSON.stringify(this.categorysData.data));
           this.router.navigate(['dashboard']);
         }
        else{

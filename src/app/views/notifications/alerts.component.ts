@@ -66,7 +66,7 @@ export class AlertsComponent implements OnInit {
   this.service.getWrittenTestmonials().subscribe(response => {
     this.categorysData = response.json().data;
     console.log(this.categorysData);
-    this.userData=JSON.parse(sessionStorage.getItem('loginDetails'));
+    this.userData=JSON.parse(localStorage.getItem('loginDetails'));
     console.log(this.userData[0].employee_id);
     this.spinner.hide();
   });

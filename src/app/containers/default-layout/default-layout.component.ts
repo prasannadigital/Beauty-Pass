@@ -21,6 +21,6 @@ export class DefaultLayoutComponent {
     });
   }
   clearSession(){
-    sessionStorage.removeItem('loginDetails');  
+    localStorage.removeItem('loginDetails');  
   }
 }

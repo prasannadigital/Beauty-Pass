@@ -61,7 +61,7 @@ export class BeautyTipsComponent implements OnInit {
       console.log(this.categorysData);
       this.spinner.hide();
     });
-    this.userData=JSON.parse(sessionStorage.getItem('loginDetails'));
+    this.userData=JSON.parse(localStorage.getItem('loginDetails'));
     console.log(this.userData[0].employee_id);
 
   }
