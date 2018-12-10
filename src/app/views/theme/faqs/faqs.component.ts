@@ -28,47 +28,32 @@ export function getAlertConfig(): AlertConfig {
 })
 export class FaqsComponent implements OnInit {
 
-  //@ViewChild('myForm') mytemplateForm : ngForm;
+ 
   alerts: any[] = [{
     type: 'success',
     msg: `Testmonial Details Updated Successfully`,
     timeout: 5000
   }];
   totalItems: number;
-  //categorysData: any;
-  //editData: any = [];
+  categorysData: any;
+  editData: any = [];
   bigCurrentPage: number = 1;
-  currentImage: any = '';
-  bankuploadedFiles: any;
-  myFiles: string[] = [];
-  bankstmtImage: number = 0;
-  data = [];
-  uploadedFiles: any[] = [];
-  userImageName = '';
-  userimagePreview: any;
-  userImage: string;
-  hideModal = false;
-  //deleteData: { tip_id: any; tip_title: any; tip_description: any; profile_name: any; rec_status: number; };
-  alertMessageValue: boolean;
-  validBtn: boolean;
- 
-    categorysData: any;
-    createdValue=false;
-  //deleteData: { employee_id: any; emp_firstname: any; emp_address: any; emp_mobile: any; emp_email: any; emp_password: any; emp_branch: any; emp_role: any; emp_status: number; };
-  userData: any;
-  deleteData: { faq_id: any; faq_question: any; faq_answer: any; faq_createddate: any; faq_status: number; };
-  editData={
-    'faq_id': '',
-    'faq_question':'',
-    'faq_answer':'',
-    'faq_createddate':'',
-    }
-  constructor(private spinner: NgxSpinnerService,private service:FaqsService,private router: Router, sanitizer: DomSanitizer) {
+  deleteData: { faq_id: any; faq_question: any; faq_answer: any; faq_status: number; };
+  constructor(private spinner: NgxSpinnerService,private router: Router,private service: FaqsService ,sanitizer: DomSanitizer) {
     this.alertsHtml = this.alertsHtml.map((alert: any) => ({
       type: alert.type,
       msg: sanitizer.sanitize(SecurityContext.HTML, alert.msg)
     }));
    }
+   ngOnInit() {
+    this.spinner.show();
+    this.service.getList().subscribe(response => {
+      this.categorysData = response.json().data;
+      console.log(this.categorysData);
+      this.spinner.hide();
+    });
+  
+  }
    alertsHtml: any = [
     {
       type: 'success',
@@ -83,46 +68,40 @@ export class FaqsComponent implements OnInit {
       msg: `<strong>Warning!</strong> Better check yourself, you're not looking too good.`
     }
   ];
-  clearData(){
-    this.editData.faq_question='';
-    this.editData.faq_answer='';
-  }
   editPromotion(data, index) {
     data.index = index;
     this.editData = data;
     console.log(this.editData)
   }
-  clearForm(){
-    (<HTMLFormElement>document.getElementById("Login")).reset();
-   }
+  onSubmit() {
+    //console.log(this.editData.tip_title);
+    this.updatePromotion(this.editData);
+  }
   updatePromotion(val) {
-    if(this.editData.faq_question!='' && this.editData.faq_answer!=''){
-      let element = document.getElementById("CloseButton");
-      console.log(val)
-      var data = {
-        faq_id: val.faq_id,
-        faq_question: val.faq_question,
-        faq_answer: val.faq_answer,
-        faq_createddate: val.faq_createddate,
-        faq_status: val.faq_status
-      
-      }
-       if(!data.faq_id){
-         this.addCreate();
-         this.clearData();
-       }
-      this.service.rgisterSubmit(data).subscribe();
-  
-      element.click();
-      this.categorysData = [];
-      this.service.getList().subscribe(response => {
-        this.categorysData = response.json().data;
-        console.log(this.categorysData);
-        //this.addCreate();
-        this.clearForm();
-      });
+    let element = document.getElementById("CloseButton");
+    let element1 = document.getElementById("CloseButtonCreate");
+    if(val.faq_id){
+      this.categorysData=[];
+      this.add();
+    }else{
+      this.addCreate();
     }
-    
+    console.log(val)
+    var data = {
+      faq_id: val.faq_id,
+      faq_question: val.faq_question,
+      faq_answer: val.faq_answer,
+      faq_status: 1
+    }
+    console.log(data)
+    this.service.rgisterSubmit(data).subscribe();
+    this.categorysData=[];
+    this.service.getList().subscribe(response => {
+      this.categorysData = response.json().data;
+      console.log(this.categorysData);
+      element.click();
+      element1.click();
+    });
   }
   DeletePromotion(val) {
     console.log(val)
@@ -130,21 +109,19 @@ export class FaqsComponent implements OnInit {
       faq_id: val.faq_id,
       faq_question: val.faq_question,
       faq_answer: val.faq_answer,
-      faq_createddate: val.faq_createddate,
-      faq_status: 0
-    
+      faq_status:0
     }
-    this.deleteData = data;
+    this.deleteData=data;
   }
-  deleteAlert() {
+  deleteAlert(){
     this.service.rgisterSubmit(this.deleteData).subscribe();
     this.delete();
-    this.categorysData = [];
+    this.categorysData=[];
     this.service.getList().subscribe(response => {
       this.categorysData = response.json().data;
       console.log(this.categorysData)
     });
-
+  
   }
   alertsDismiss: any = [];
   add(): void {
@@ -168,30 +145,4 @@ export class FaqsComponent implements OnInit {
       timeout: 5000
     });
   }
-  onSubmit() {
-    console.log(this.editData);
-    this.updatePromotion(this.editData)
-    // this.service.rgisterSubmit(this.editData).subscribe(response => {
-    //   this.categorysData = response.json().data;
-    //   console.log(this.categorysData);
-    //   if(this.categorysData.employee_id!=""){
-    //     this.createdValue=true;
-    //   }else{
-    //     this.createdValue=false;
-    //   }
-    
-      //this.router.navigate(['dashboard'])
-   // });
-   // this.updatePromotion(this.editData);
-  }
-ngOnInit(){
-  this.spinner.show();
-  this.service.getList().subscribe(response => {
-    this.categorysData = response.json().data;
-    console.log(this.categorysData);
-    this.userData=JSON.parse(localStorage.getItem('loginDetails'));
-    console.log(this.userData[0].employee_id);
-    this.spinner.hide();
-  });
-}
 }

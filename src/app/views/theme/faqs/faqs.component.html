@@ -8,150 +8,126 @@ type="ball-scale-multiple">
 <div class="card-body">
   <div class="row">
     <div class="col-6 col-sm-4 col-md text-center">
-      <button (click)="largeModalCreate.show();" class="btn btn-primary" style="float: right;"><i class="fa fa-lightbulb-o"></i>&nbsp;Create
-        FAQ</button>
-    </div>
-
+      <button type="button" (click)="f1.reset();largeModalCreate.show();" class="btn btn-primary" style="float: right;"><i class="fa fa-lightbulb-o"></i>&nbsp;Create Reward</button>
+    </div> 
   </div>
 </div>
-<div bsModal #dangerModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-danger" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Delete FAQ</h4>
-        <button type="button" class="close" (click)="dangerModal.hide()" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure to Delete ?</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="dangerModal.hide()">Close</button>
-        <button type="button" class="btn btn-danger" (click)="dangerModal.hide();deleteAlert();">Delete</button>
+<div bsModal #dangerModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-danger" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Delete Perk</h4>
+          <button type="button" class="close" (click)="dangerModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure to Delete ?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="dangerModal.hide()">Close</button>
+          <button type="button" class="btn btn-danger" (click)="dangerModal.hide();deleteAlert();">Delete</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div bsModal #largeModalCreate="bs-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Create FAQ </h4>
-        <button type="button" class="close" (click)="largeModalCreate.hide()" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div *ngFor="let alert of alertsDismiss">
-                <b>
-                  <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
-                </b>
-              </div>
-              <div class="card-header">
-                <strong>Create User</strong>
-              </div>
-              <div class="card-body">
-                <form name="form" id="Login" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-
-                  <p class="text-muted">Create FAQ</p>
-                  <div  class="form-group row">
-                      <label class="col-md-3 col-form-label" for="text-input">Question<b style="color:red">*</b></label>
-                      <div class="col-md-9">
-                    <input type="text" maxlength="50" class="form-control" placeholder="Question ?" name="faq_question"
-                      [ngModelOptions]="{standalone: true}" [(ngModel)]="editData.faq_question" #faq_question="ngModel"
-                      [ngClass]="{ 'is-invalid': f.submitted && faq_question.invalid }" required>
-                    <div *ngIf="f.submitted && faq_question.invalid" class="invalid-feedback">
-                      <div *ngIf="faq_question.errors.required">Question is required</div>
-                    </div>
-                    </div>
+<div bsModal #largeModalCreate="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">Create Reward</h4>
+      <button type="button" class="close" (click)="largeModalCreate.hide()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <strong>Create Reward</strong>
+            </div>
+            <div class="card-body">
+              <form name="form" (ngSubmit)="f1.form.valid && onSubmit()" #f1="ngForm" novalidate>
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="text-input">Question<b style="color:red">*</b></label>
+                  <div class="col-md-9">
+                    <input type="text" maxlength="50"  name="faq_question" class="form-control" placeholder="Text" [(ngModel)]="editData.faq_question"
+                    #faq_question="ngModel" [ngClass]="{ 'is-invalid': f1.submitted && faq_question.invalid }"
+                      required>
+                      <div *ngIf="f1.submitted && faq_question.invalid" class="invalid-feedback">
+                        <div *ngIf="faq_question.errors.required">Question is required</div>
+                      </div>
                   </div>
-                  <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="text-input">Answer<b style="color:red">*</b></label>
-                        <div class="col-md-9">
-                      <textarea type="text" maxlength="500" rows="5" class="form-control" placeholder="Answer" name="faq_answer"
-                        [ngModelOptions]="{standalone: true}" [(ngModel)]="editData.faq_answer" #faq_answer="ngModel"
-                        [ngClass]="{ 'is-invalid': f.submitted && faq_answer.invalid }" required></textarea>
-                      <div *ngIf="f.submitted && faq_answer.invalid" class="invalid-feedback">
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="text-input">Answer<b style="color:red">*</b></label>
+                  <div class="col-md-9">
+                    <textarea type="text" rows="5" maxlength="500"  name="faq_answer" class="form-control" placeholder="Text" [(ngModel)]="editData.faq_answer"
+                    #faq_answer="ngModel" [ngClass]="{ 'is-invalid': f1.submitted && faq_answer.invalid }"
+                      required></textarea>
+                      <div *ngIf="f1.submitted && faq_answer.invalid" class="invalid-feedback">
                         <div *ngIf="faq_answer.errors.required">Answer is required</div>
                       </div>
-                      </div>
-                    </div>
-                
-                  <div class="form-group">
-                    <label class="col-md-3 col-form-label" for="text-input"></label>
-                    <button class="btn btn-success">Create FAQ</button>
                   </div>
-
-                </form>
-              </div>
+                </div>
+                <button  style="margin-left: 26%;" class="btn btn-primary" >Save</button>
+              </form>
             </div>
           </div>
         </div>
-
       </div>
-      <div class="modal-footer">
-        <button type="button" id="CloseButton" class="btn btn-secondary" (click)="largeModalCreate.hide()">Close</button>
-
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
+    </div>
+    <div class="modal-footer">
+      <button type="button" id="CloseButton" class="btn btn-secondary" (click)="largeModalCreate.hide()">Close</button>
+    
+    </div>
+  </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <div bsModal #largeModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Edit FAQ Details</h4>
+        <h4 class="modal-title"></h4>
         <button type="button" class="close" (click)="largeModal.hide()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-
       <div class="modal-body">
         <div class="row">
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <strong>Edit FAQ </strong>
+                <strong>Edit FAQ</strong> 
               </div>
               <div class="card-body">
-                <form name="form" id="Login" (ngSubmit)="f1.form.valid && onSubmit()" #f1="ngForm" novalidate>
-
-                  <p class="text-muted">Edit FAQ</p>
-                  <div  class="form-group row">
-                      <label class="col-md-3 col-form-label" for="text-input">Question<b style="color:red">*</b></label>
-                      <div class="col-md-9">
-                    <input type="text" maxlength="50" class="form-control" placeholder="Question ?" name="faq_question"
-                      [ngModelOptions]="{standalone: true}" [(ngModel)]="editData.faq_question" #faq_question="ngModel"
-                      [ngClass]="{ 'is-invalid': f1.submitted && faq_question.invalid }" required>
-                    <div *ngIf="f1.submitted && faq_question.invalid" class="invalid-feedback">
-                      <div *ngIf="faq_question.errors.required">Question is required</div>
-                    </div>
+                <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                  <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Question<b style="color:red">*</b></label>
+                    <div class="col-md-9">
+                      <input type="text" maxlength="50"  name="faq_question" class="form-control" placeholder="Text" [(ngModel)]="editData.faq_question"
+                      #faq_question="ngModel" [ngClass]="{ 'is-invalid': f.submitted && faq_question.invalid }"
+                        required>
+                        <div *ngIf="f.submitted && faq_question.invalid" class="invalid-feedback">
+                          <div *ngIf="faq_question.errors.required">Question is required</div>
+                        </div>
                     </div>
                   </div>
                   <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="text-input">Answer<b style="color:red">*</b></label>
-                        <div class="col-md-9">
-                      <textarea type="text" maxlength="500" rows="5" class="form-control" placeholder="Answer" name="faq_answer"
-                        [ngModelOptions]="{standalone: true}" [(ngModel)]="editData.faq_answer" #faq_answer="ngModel"
-                        [ngClass]="{ 'is-invalid': f1.submitted && faq_answer.invalid }" required></textarea>
-                      <div *ngIf="f1.submitted && faq_answer.invalid" class="invalid-feedback">
-                        <div *ngIf="faq_answer.errors.required">Answer is required</div>
-                      </div>
-                      </div>
+                    <label class="col-md-3 col-form-label" for="text-input">Answer<b style="color:red">*</b></label>
+                    <div class="col-md-9">
+                      <textarea type="text" rows="5" maxlength="500"  name="faq_answer" class="form-control" placeholder="Text" [(ngModel)]="editData.faq_answer"
+                      #faq_answer="ngModel" [ngClass]="{ 'is-invalid': f.submitted && faq_answer.invalid }"
+                        required></textarea>
+                        <div *ngIf="f.submitted && faq_answer.invalid" class="invalid-feedback">
+                          <div *ngIf="faq_answer.errors.required">Answer is required</div>
+                        </div>
                     </div>
-                
-                  <div class="form-group">
-                    <label class="col-md-3 col-form-label" for="text-input"></label>
-                    <button class="btn btn-success">Save Changes</button>
                   </div>
-
+                  <button  class="btn btn-primary" style="margin-left:26%">Save Changes</button>
                 </form>
               </div>
             </div>
@@ -159,31 +135,30 @@ type="ball-scale-multiple">
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="largeModal.hide()">Close</button>
-        <!-- <button type="button" [disabled]="validBtn" class="btn btn-primary" (click)="updatePromotion(editData);largeModal.hide();add();">Save
-          changes</button> -->
+        <button type="button" id="CloseButtonCreate" class="btn btn-secondary" (click)="largeModal.hide()">Close</button>
+        <!-- <button type="button" class="btn btn-primary" (click)="updatePromotion(editData);largeModal.hide();" >Save changes</button> -->
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <div *ngFor="let alert of alertsDismiss">
-  <b>
-    <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
-  </b>
-</div>
+  <b><alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert></b> 
+ </div>
 <div class="animated fadeIn">
   <div class="row">
     <div class="col-lg-12">
       <div class="card">
         <div class="card-header">
-          <i class="fa fa-align-justify"></i>FAQ's List
+          <i class="fa fa-align-justify"></i> FAQ's List
         </div>
         <div class="card-body">
           <table class="table table-bordered table-striped table-sm">
             <thead>
               <tr>
-                <th>FAQ</th>
+                <th>Question</th>
                 <th>Answer</th>
+              
+               
                 <th>Edit</th>
                 <th>Delete</th>
               </tr>
@@ -192,10 +167,10 @@ type="ball-scale-multiple">
               <tr *ngFor="let item of categorysData | paginate: { itemsPerPage: 10, currentPage: p }">
                 <td>{{item.faq_question}}</td>
                 <td>{{item.faq_answer}}</td>
-                <td> <button class="btn-primary" data-toggle="modal" (click)="largeModal.show();editPromotion(item,i)"><i
-                      class="fa fa-edit"></i></button></td>
-                <td> <button class="btn-danger" data-toggle="modal" (click)="dangerModal.show();DeletePromotion(item,i)"><i
-                      class="fa fa-trash"></i></button></td>
+              
+              
+                <td> <button class="btn-primary" data-toggle="modal" (click)="largeModal.show();editPromotion(item,i)"><i class="fa fa-edit"></i></button></td>
+                <td> <button class="btn-danger"  data-toggle="modal"(click)="dangerModal.show();DeletePromotion(item,i)"><i class="fa fa-trash"></i></button></td>
               </tr>
               <tr *ngIf="!categorysData || categorysData.length ==0">
                 No Records Found
@@ -203,8 +178,13 @@ type="ball-scale-multiple">
             </tbody>
           </table>
           <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          <!-- <div class="col-xs-12 col-12">
+            <pagination [totalItems]="bigTotalItems" [(ngModel)]="bigCurrentPage" [maxSize]="maxSize" class="pagination-sm"
+                        previousText="&lsaquo;" nextText="&rsaquo;" [boundaryLinks]="true"></pagination>
+          </div> -->
         </div>
       </div>
     </div>
+    <!--/.col-->
   </div>
 </div>
