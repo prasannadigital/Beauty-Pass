@@ -47,11 +47,11 @@ export class DropdownsComponent {
     }));
    }
    ngOnInit() {
-    this.spinner.show();
+    //this.spinner.show();
     this.service.getUserlistForHistory().subscribe(response => {
       this.categorysData = response.json().data;
       console.log(this.categorysData);
-      this.spinner.hide();
+      //this.spinner.hide();
     });
   
   }
