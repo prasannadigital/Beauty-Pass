@@ -13,6 +13,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AlertModule } from 'ngx-bootstrap';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { FaqsComponent } from './faqs/faqs.component';
 
 // Dropdowns Component
 
@@ -30,7 +31,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
   declarations: [
     BeautyTipsComponent,
     TestimonialsComponent,
-    UsersComponent
+    UsersComponent,
+    FaqsComponent
   ]
 })
 export class ThemeModule { }

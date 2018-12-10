@@ -11,6 +11,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpModule } from '@angular/http';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { CookieService } from 'ngx-cookie-service';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -78,7 +79,8 @@ import { AlertModule } from 'ngx-bootstrap/alert';
   ],
   providers: [{
     provide: LocationStrategy,
-    useClass: HashLocationStrategy
+    useClass: HashLocationStrategy,
+    
   }],
   bootstrap: [ AppComponent ]
 })

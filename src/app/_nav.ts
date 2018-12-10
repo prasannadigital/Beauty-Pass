@@ -14,6 +14,11 @@ export const navItems = [
   url: '/admin/employees',
   icon: 'icon-people'
 },
+{
+  name: 'FAQs',
+  url: '/admin/faqs',
+  icon: 'icon-plus'
+},
   {
     name: 'Testmonials',
     url: '/testmonials',
