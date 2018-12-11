@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
 import { DashboardService } from '../../services/dashboard.service';
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   templateUrl: 'dashboard.component.html'
@@ -24,91 +24,100 @@ export class DashboardComponent implements OnInit {
   tipsDataLength: number;
   mindBodyDatalength: number;
   perksDataLength: number;
-  actvitiesDataLength:number;
-  maleUserCount:number;
-  femaleUserCount:number;
-  totalUsers:number;
+  actvitiesDataLength: number;
+  maleUserCount: number;
+  femaleUserCount: number;
+  totalUsers: number;
   categorysData: any;
-  test:any;
-  num1:number;
-  num2:number;
+  test: any;
+  num1: number;
+  num2: number;
   garphData: any;
-  constructor(private spinner: NgxSpinnerService,private service: DashboardService){
+  mainChartData1: Array<number> = [];;
+  mainChartData1Test: Array<number> = [];
+  constructor(private spinner: NgxSpinnerService, private service: DashboardService) {
   }
-  ngOnInit(){
-   this.service.getGraphdata().subscribe(response => {
-    this.garphData = response.json().data;
-    this.mainChartData1=  this.transformJsonToCustomFormat(response.json().data);
-    console.log("test123"+this.mainChartData1);
-    //this.spinner.hide();
-   // console.log(this.userData.length);
-  }); 
+  ngOnInit() {
+    this.service.getGraphdata().subscribe(response => {
+      this.garphData = response.json().data;
+      this.mainChartData1Test = this.transformJsonToCustomFormat(response.json().data);
+      this.mainChartLabels = this.transformJsonToCustomFormat1(response.json().data);
+      //this.mainChartData1.push(this.mainChartData1Test);
+      console.log("test12345" + this.mainChartData1Test);
+      console.log("test1234" + this.mainChartData1);
+      console.log("test123" + this.mainChartLabels);
+      //this.spinner.hide();
+      // console.log(this.userData.length);
+    });
     // generate random values for mainChart
-    //for (let i = 0; i <= this.mainChartElements; i++) {
-      this.mainChartData1.push(10,12,14,16);
-      // this.mainChartData1.push(this.random(50, 200));
-      // this.mainChartData1.push(this.random(50, 200));
-      // this.mainChartData1.push(this.random(50, 200));
-      // this.mainChartData1.push(this.random(50, 200));
-      // this.mainChartData1.push(this.random(50, 200));
-      // this.mainChartData1.push(this.random(50, 200));
-      this.mainChartData2.push(this.random(80, 100));
-      this.mainChartData2.push(this.random(80, 100));
-      this.mainChartData2.push(this.random(80, 100));
-      this.mainChartData2.push(this.random(80, 100));
-      this.mainChartData2.push(this.random(80, 100));
-      this.mainChartData2.push(this.random(80, 100));
-     // this.mainChartData3.push(65);
-      console.log(this.mainChartData1);
-      //console.log(i);
-      console.log(this.mainChartData2);
-      //console.log(this.mainChartData3);
+  
+    //console.log("test123"+this.mainChartData1);
+    //console.log("test123"+this.mainChartLabels);
+   // this.mainChartData1=this.mainChartData1Test;
+   //console.log("test123" +this.mainChartData1);
+    
+    console.log(this.mainChartData1);
+     this.mainChartData1.push(1,1,2,2,1,1,1,2,2,2,4,3,1,1,3,3,2,1,2,2,2,1);
+    // this.mainChartData1.push(this.random(50, 200));
+    // this.mainChartData1.push(this.random(50, 200));
+    // this.mainChartData1.push(this.random(50, 200));
+    //this.mainChartData2.push(this.random(80, 100));
+    // this.mainChartData2.push(this.random(80, 100));
+    // this.mainChartData2.push(this.random(80, 100));
+    // this.mainChartData2.push(this.random(80, 100));
+    // this.mainChartData2.push(this.random(80, 100));
+    // this.mainChartData2.push(this.random(80, 100));
+    // this.mainChartData3.push(65);
+    console.log(this.mainChartData1);
+    //console.log(i);
+    console.log(this.mainChartData2);
+    //console.log(this.mainChartData3);
 
     //}
-   // this.spinner.show();
-   this.service.getUsersList().subscribe(response => {
-    this.userData = response.json().data;
-    this.userDataLength=this.userData[0].totaluser;
-    console.log(this.userDataLength);
-    //this.spinner.hide();
-   // console.log(this.userData.length);
-  }); 
-  this.service.getRecentUsersList().subscribe(response => {
-    this.categorysData = response.json().data;
-    //console.log(this.recentUserData.length);
-  }); 
-  this.service.getBeautyTipsList().subscribe(response => {
-    this.tipsData = response.json().data;
-   this.tipsDataLength= this.tipsData.length
-    //console.log(this.tipsData.length);
-  }); 
-  this.service.getUserActivitiesList().subscribe(response => {
-    this.activitiesData = response.json().data;
-    this.activitiesDataLength=this.activitiesData.length;
-    console.log(this.activitiesData.length);
-  }); 
-  this.service.getVideoTestmonials().subscribe(response => {
-    this.videoData = response.json().data;
-    this.videoDatalength=this.videoData.length;
-   // console.log(this.videoData.length);
-  }); 
-  this.service.getWrittenTestmonials().subscribe(response => {
-    this.writtenData = response.json().data;
-    this.writtenDataLength = this.writtenData.length
-   // console.log(this.writtenData.length);
-  }); 
-  this.service.getMindBodyCoupons().subscribe(response => {
-    this.mindBodyData = response.json().data;
-    this.mindBodyDatalength = this.mindBodyData.length
-   //console.log(this.mindBodyData.length);
-  }); 
-  this.service.getPerksList().subscribe(response => {
-    this.perksData = response.json().data;
-    this.perksDataLength =this.perksData.length
-    //console.log(this.perksData.length);
-  });
-  this.userCount();
-  this.spinner.hide();
+    // this.spinner.show();
+    this.service.getUsersList().subscribe(response => {
+      this.userData = response.json().data;
+      this.userDataLength = this.userData[0].totaluser;
+      console.log(this.userDataLength);
+      //this.spinner.hide();
+      // console.log(this.userData.length);
+    });
+    this.service.getRecentUsersList().subscribe(response => {
+      this.categorysData = response.json().data;
+      //console.log(this.recentUserData.length);
+    });
+    this.service.getBeautyTipsList().subscribe(response => {
+      this.tipsData = response.json().data;
+      this.tipsDataLength = this.tipsData.length
+      //console.log(this.tipsData.length);
+    });
+    this.service.getUserActivitiesList().subscribe(response => {
+      this.activitiesData = response.json().data;
+      this.activitiesDataLength = this.activitiesData.length;
+      console.log(this.activitiesData.length);
+    });
+    this.service.getVideoTestmonials().subscribe(response => {
+      this.videoData = response.json().data;
+      this.videoDatalength = this.videoData.length;
+      // console.log(this.videoData.length);
+    });
+    this.service.getWrittenTestmonials().subscribe(response => {
+      this.writtenData = response.json().data;
+      this.writtenDataLength = this.writtenData.length
+      // console.log(this.writtenData.length);
+    });
+    this.service.getMindBodyCoupons().subscribe(response => {
+      this.mindBodyData = response.json().data;
+      this.mindBodyDatalength = this.mindBodyData.length
+      //console.log(this.mindBodyData.length);
+    });
+    this.service.getPerksList().subscribe(response => {
+      this.perksData = response.json().data;
+      this.perksDataLength = this.perksData.length
+      //console.log(this.perksData.length);
+    });
+    this.userCount();
+    this.spinner.hide();
   }
   transformJsonToCustomFormat(input: any[]) {
     //console.log(input);
@@ -118,33 +127,48 @@ export class DashboardComponent implements OnInit {
       console.log(item.count)
       response.push(
         item.count
-        
+
       );
-      
+
     });
 
     return response;
   }
-  userCount(){
+  transformJsonToCustomFormat1(input: any[]) {
+    //console.log(input);
+    const response = [];
+
+    input.forEach(item => {
+      console.log(item.count)
+      response.push(
+        item.dayname
+
+      );
+
+    });
+
+    return response;
+  }
+  userCount() {
     this.service.getMaleCount().subscribe(response => {
       this.num1 = response.json().data[0].total;
-   
-    }); 
+
+    });
     this.service.getFemaleCount().subscribe(response => {
       this.num2 = response.json().data[0].total;
-    
-    
+
+
     });
-    
+
   }
-  testFun(){
-    this.totalUsers=this.num1 + this.num2;
-    this.maleUserCount=Math.round(((this.num1)/(this.totalUsers))*100)
-    this.femaleUserCount=100-this.maleUserCount;
-    this.maleUserCount=this.maleUserCount/100;
-    this.femaleUserCount=this.femaleUserCount/100;
-   // console.log( this.totalUsers);
-   
+  testFun() {
+    this.totalUsers = this.num1 + this.num2;
+    this.maleUserCount = Math.round(((this.num1) / (this.totalUsers)) * 100)
+    this.femaleUserCount = 100 - this.maleUserCount;
+    this.maleUserCount = this.maleUserCount / 100;
+    this.femaleUserCount = this.femaleUserCount / 100;
+    // console.log( this.totalUsers);
+
   }
   radioModel: string = 'Month';
 
@@ -351,7 +375,8 @@ export class DashboardComponent implements OnInit {
   // mainChart
 
   public mainChartElements = 30;
-  public mainChartData1: Array<number> = [];
+
+
   public mainChartData2: Array<number> = [];
   public mainChartData3: Array<number> = [];
 
@@ -370,7 +395,7 @@ export class DashboardComponent implements OnInit {
     }
   ];
   /* tslint:disable:max-line-length */
-  public mainChartLabels: Array<any> = ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Thursday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday','Monday', 'Thursday',];
+  public mainChartLabels: Array<any> = [];
   /* tslint:enable:max-line-length */
   public mainChartOptions: any = {
     tooltips: {
@@ -380,7 +405,7 @@ export class DashboardComponent implements OnInit {
       mode: 'index',
       position: 'nearest',
       callbacks: {
-        labelColor: function(tooltipItem, chart) {
+        labelColor: function (tooltipItem, chart) {
           return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
         }
       }
@@ -393,7 +418,7 @@ export class DashboardComponent implements OnInit {
           drawOnChartArea: false,
         },
         ticks: {
-          callback: function(value: any) {
+          callback: function (value: any) {
             return value.charAt(0);
           }
         }
@@ -402,8 +427,8 @@ export class DashboardComponent implements OnInit {
         ticks: {
           beginAtZero: true,
           maxTicksLimit: 5,
-          stepSize: Math.ceil(250 / 5),
-          max: 250
+          stepSize: Math.ceil(50 / 5),
+          max: 50
         }
       }]
     },
@@ -516,5 +541,5 @@ export class DashboardComponent implements OnInit {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  
+
 }
