@@ -25,12 +25,12 @@ export class RefferalRewardsService {
     return this.http.get(environment.host + 'mindbody-coupons');
   }
   public editMindBodyCoupons(data:any) {
-    return this.http.post(environment.host + 'mindbody-coupons', data);
+    return this.http.post(environment.host + 'mindbody-coupons',data);
   }
-  public getUserlistForHistory() {
-    return this.http.get(environment.host + 'get_users_list');
+  public getUserlistForHistory(data:any) {
+    return this.http.get(environment.host + 'user-search?name='+data);
   }
   public getUserRewardHistory(id:number) {
-    return this.http.get(environment.host + 'reward_histories/' +id);
+    return this.http.get(environment.host + 'reward_histories/'+id);
   }
 }

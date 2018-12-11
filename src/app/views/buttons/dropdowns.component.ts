@@ -1,9 +1,10 @@
-import { Component, SecurityContext, ViewEncapsulation,OnInit } from '@angular/core';
+import { Component, SecurityContext, ViewEncapsulation, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AlertConfig } from 'ngx-bootstrap/alert';
 import { Router } from '@angular/router';
 import { RefferalRewardsService } from '../../services/refferal-rewards.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { TypeaheadMatch } from 'ngx-bootstrap';
 
 // such override allows to keep some initial values
 
@@ -27,8 +28,9 @@ export function getAlertConfig(): AlertConfig {
   providers: [{ provide: AlertConfig, useFactory: getAlertConfig }]
 })
 export class DropdownsComponent {
-  userId:number;
-  tableStatus=false;
+  userId: number;
+  tableStatus = false;
+  noDataFound=false;
   alerts: any[] = [{
     type: 'success',
     msg: `Testmonial Details Updated Successfully`,
@@ -36,26 +38,69 @@ export class DropdownsComponent {
   }];
   totalItems: number;
   categorysData: any;
-  categorysDataUsers:any;
+  categorysDataUsers: any;
   editData: any = [];
   bigCurrentPage: number = 1;
   getValue: number;
-  constructor(private spinner: NgxSpinnerService,private router: Router,private service: RefferalRewardsService ,sanitizer: DomSanitizer) {
+  existingDetail: string;
+  selectedValue: string;
+  userInfo: any = [];
+  noResult = false;
+  selectedOption: any;
+  constructor(private spinner: NgxSpinnerService, private router: Router, private service: RefferalRewardsService, sanitizer: DomSanitizer) {
     this.alertsHtml = this.alertsHtml.map((alert: any) => ({
       type: alert.type,
       msg: sanitizer.sanitize(SecurityContext.HTML, alert.msg)
     }));
-   }
-   ngOnInit() {
-    //this.spinner.show();
-    this.service.getUserlistForHistory().subscribe(response => {
-      this.categorysData = response.json().data;
-      console.log(this.categorysData);
-      //this.spinner.hide();
-    });
-  
   }
-   alertsHtml: any = [
+  ngOnInit() {
+    //this.spinner.show();
+
+
+  }
+  onSelect(event: TypeaheadMatch): void {
+    this.selectedOption = event.item;
+    console.log(this.selectedOption);
+    let id=this.selectedOption.mindbody_id;
+    this.setUserId(id);
+    // this.service.getUserRewardHistory(id).subscribe(response => {
+    //   this.categorysDataUsers = response.json().data;
+    //   console.log(this.categorysDataUsers)
+    //   if(this.categorysDataUsers.length==0){
+    //     this.tableStatus = true;
+    //     this.noDataFound=false;
+    //   }
+    //   else{
+    //     this.tableStatus = false;
+    //     this.noDataFound=true;
+    //   }
+    // });
+
+
+  }
+  userSearch(val) {
+    this.tableStatus=false;
+    this.noDataFound=false;
+    if (val.length > 2) {
+      this.service.getUserlistForHistory(val).subscribe(res => {
+        let temp = [];
+        temp.push(res.json().data);
+      //  console.log(temp)
+        if (res.json().status == false) {
+          this.userInfo = [];
+          this.noResult = true;
+        } else {
+          this.noResult = false;
+          this.userInfo = temp.pop();
+         // console.log(this.userInfo)
+        }
+      })
+    } else {
+      this.noResult = false;
+      this.userInfo = [];
+    }
+  }
+  alertsHtml: any = [
     {
       type: 'success',
       msg: `<strong>Well done!</strong> You successfully read this important alert message.`
@@ -72,7 +117,7 @@ export class DropdownsComponent {
   editPromotion(data, index) {
     data.index = index;
     this.editData = data;
-    this.totalItems=this.editData.length;
+    this.totalItems = this.editData.length;
     console.log(this.editData.length)
   }
   updatePromotion(val) {
@@ -84,7 +129,7 @@ export class DropdownsComponent {
       rating_3: val.rating_3,
       rating_4: val.rating_4,
       rating_5: val.rating_5,
-      recomment:val.recomment,
+      recomment: val.recomment,
       status: val.status,
       uploadpic: val.uploadpic,
       user_id: val.user_id
@@ -106,7 +151,7 @@ export class DropdownsComponent {
       rating_3: val.rating_3,
       rating_4: val.rating_4,
       rating_5: val.rating_5,
-      recomment:val.recomment,
+      recomment: val.recomment,
       status: 0,
       testimonial_createddate: val.testimonial_createddate,
       testimonial_id: val.testimonial_id,
@@ -116,14 +161,22 @@ export class DropdownsComponent {
     }
     //this.service.editWrittenTestmonials(data).subscribe();
   }
-  setUserId(branch_id: any): void{
+  setUserId(branch_id: any): void {
     //this.categorysDataUsers=[];
     this.userId = branch_id;
     console.log(branch_id)
-    this.tableStatus=true;
+    this.tableStatus = true;
     this.service.getUserRewardHistory(branch_id).subscribe(response => {
       this.categorysDataUsers = response.json().data;
       console.log(this.categorysDataUsers)
+      if(this.categorysDataUsers.length!=0){
+           this.tableStatus = true;
+           this.noDataFound=false;
+          }
+           else{
+            this.tableStatus = false;
+             this.noDataFound=true;
+          }
     });
   }
 }

@@ -46,6 +46,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { RegisterComponent } from './views/register/register.component';
 import { PaginatorModule } from 'primeng/paginator';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { TypeaheadModule } from 'ngx-bootstrap';
 @NgModule({
   imports: [
     BrowserModule,
@@ -67,6 +68,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     FormsModule,
     PaginatorModule,
     ModalModule.forRoot(),
+    TypeaheadModule.forRoot(),
     BrowserAnimationsModule
   ],
   declarations: [
