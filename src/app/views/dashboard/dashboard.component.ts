@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
   mindBodyData: any;
   recentUserData: any;
   perksData: any;
-  userDataLength: number;
+  userDataLength: any;
   videoDatalength: number;
   activitiesDataLength: number;
   writtenDataLength: number;
@@ -58,11 +58,12 @@ export class DashboardComponent implements OnInit {
       //console.log(this.mainChartData3);
 
     //}
-    this.spinner.show();
+   // this.spinner.show();
    this.service.getUsersList().subscribe(response => {
     this.userData = response.json().data;
-    this.userDataLength=this.userData.length
-    this.spinner.hide();
+    this.userDataLength=this.userData[0].totaluser;
+    console.log(this.userDataLength);
+    //this.spinner.hide();
    // console.log(this.userData.length);
   }); 
   this.service.getRecentUsersList().subscribe(response => {

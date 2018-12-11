@@ -46,7 +46,7 @@ export class DashboardService {
     return this.http.get(environment.host + 'video-testimonials');
   }
   public getUsersList() {
-    return this.http.get(environment.host + 'get_users_list');
+    return this.http.get(environment.host + 'total-users');
   }
   public getRecentUsersList() {
     return this.http.get(environment.host + 'get_recent_users');
