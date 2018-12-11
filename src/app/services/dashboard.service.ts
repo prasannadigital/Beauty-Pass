@@ -51,5 +51,9 @@ export class DashboardService {
   public getRecentUsersList() {
     return this.http.get(environment.host + 'get_recent_users');
   }
+  public getGraphdata() {
+    return this.http.get(environment.host + 'graphs');
+  }
+
  
 }

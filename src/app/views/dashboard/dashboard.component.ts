@@ -32,10 +32,17 @@ export class DashboardComponent implements OnInit {
   test:any;
   num1:number;
   num2:number;
+  garphData: any;
   constructor(private spinner: NgxSpinnerService,private service: DashboardService){
   }
   ngOnInit(){
-   
+   this.service.getGraphdata().subscribe(response => {
+    this.garphData = response.json().data;
+    this.mainChartData1=  this.transformJsonToCustomFormat(response.json().data);
+    console.log("test123"+this.mainChartData1);
+    //this.spinner.hide();
+   // console.log(this.userData.length);
+  }); 
     // generate random values for mainChart
     //for (let i = 0; i <= this.mainChartElements; i++) {
       this.mainChartData1.push(10,12,14,16);
@@ -102,6 +109,21 @@ export class DashboardComponent implements OnInit {
   });
   this.userCount();
   this.spinner.hide();
+  }
+  transformJsonToCustomFormat(input: any[]) {
+    //console.log(input);
+    const response = [];
+
+    input.forEach(item => {
+      console.log(item.count)
+      response.push(
+        item.count
+        
+      );
+      
+    });
+
+    return response;
   }
   userCount(){
     this.service.getMaleCount().subscribe(response => {
